@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIBUTUM TECH - Cyber-Minimalist AI & Robotics</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/animations.css">
+</head>
+
+<body class="loading">
+
+  <!-- Global Holographic Interface Overlay -->
+  <div class="holographic-overlay">
+    <div class="scanlines"></div>
+    <div class="crt-flicker"></div>
+  </div>
+
+  <!-- Global Navigation -->
+  <header class="glass-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
+        <div class="logo-glow-container">
+          <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+        </div>
+        <span class="logo-text">TRIBUTUM TECH</span>
+      </a>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Smooth Scroll Wrapper for Lenis -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
+        <!-- Canvas/Image Background for Hero Zoom -->
+        <div class="hero-bg-container">
+          <img src="assets/hero-main.png" alt="Neural Hologram" class="hero-bg-img" id="hero-core-img" />
+          <img src="assets/globe-rotator.png" alt="Rotating Globe" class="hero-globe-rotator" />
+
+          <!-- HUD Elements for Depth -->
+          <div class="hero-hud-container">
+            <div class="hud-orbit"></div>
+            <div class="hud-orbit-inner"></div>
+            <div class="hud-scanning-line"></div>
+
+            <div class="hud-data-nodes">
+              <span class="node" style="top: 20%; left: 30%;"></span>
+              <span class="node" style="top: 45%; left: 75%;"></span>
+              <span class="node" style="top: 70%; left: 20%;"></span>
+              <span class="node" style="top: 15%; left: 80%;"></span>
+            </div>
+
+            <div class="hud-side-lines left">
+              <div class="h-line"></div>
+              <div class="h-line"></div>
+              <div class="h-line"></div>
+            </div>
+            <div class="hud-side-lines right">
+              <div class="h-line"></div>
+              <div class="h-line"></div>
+              <div class="h-line"></div>
+            </div>
+          </div>
+
+          <div class="hero-bg-overlay"></div>
+          <div class="hero-noise"></div>
+        </div>
+
+        <div class="container hero-content">
+          <div class="hero-text-content">
+            <div class="badge fade-up">SYSTEM CORE: ACTIVE v4.0</div>
+            <h1 class="hero-title fade-up title-delay">
+              <span class="text-glow">Intelligent Enterprise</span><br>Solutions
+            </h1>
+            <p class="hero-subtitle fade-up subtitle-delay">
+              Powering the future with advanced AI, Cyber-Security, and Cloud Network Management.
+            </p>
+            <div class="hero-actions fade-up cta-delay">
+              <a href="services.html" class="btn btn-primary">
+                <span class="btn-text">Explore Core</span>
+                <span class="btn-glow"></span>
+              </a>
+              <a href="about.html" class="btn btn-primary">
+                <span class="btn-text">View Network</span>
+                <span class="btn-glow"></span>
+              </a>
+            </div>
+          </div>
+
+          <div class="scroll-indicator">
+            <div class="mouse">
+              <div class="wheel"></div>
+            </div>
+            <span>Scroll Sequence</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Intro Section (Revealed on Scroll) -->
+      <section class="dashboard-intro">
+        <div class="container">
+          <div class="dashboard-grid">
+            <div class="dash-card glass-card">
+              <div class="card-header">
+                <div class="status-indicator active"></div>
+                <span class="card-label">Neural Processing</span>
+              </div>
+              <div class="card-body">
+                <h3 class="data-value" data-value="99.9">00.0</h3><span class="unit">%</span>
+                <p>Accuracy Rate</p>
+              </div>
+            </div>
+            <div class="dash-card glass-card">
+              <div class="card-header">
+                <div class="status-indicator warning"></div>
+                <span class="card-label">System Latency</span>
+              </div>
+              <div class="card-body">
+                <h3 class="data-value text-accent-sec" data-value="1.2">0.0</h3><span class="unit">ms</span>
+                <p>Real-time Response</p>
+              </div>
+            </div>
+            <div class="dash-card glass-card span-2">
+              <div class="card-header">
+                <span class="card-label">Active Nodes</span>
+              </div>
+              <div class="card-body visual-body">
+                <div class="node-chart">
+                  <!-- CSS visual nodes -->
+                  <div class="chart-bar" style="height: 40%"></div>
+                  <div class="chart-bar" style="height: 70%"></div>
+                  <div class="chart-bar" style="height: 50%"></div>
+                  <div class="chart-bar" style="height: 90%"></div>
+                  <div class="chart-bar" style="height: 60%"></div>
+                  <div class="chart-bar" style="height: 100%"></div>
+                  <div class="chart-bar" style="height: 80%"></div>
+                  <div class="chart-bar" style="height: 30%"></div>
+                </div>
+                <h3 class="data-value">10,248</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE NETWORK: About Preview -->
+      <section id="about-preview" class="container py-content split-layout">
+        <div class="split-image fade-up">
+          <div class="glass-container glow-border">
+            <img src="assets/vibrant_hero_4k.png" alt="Tributum Tech Network"
+              style="width: 100%; height: auto; border-radius: 8px;">
+            <div class="scanlines"></div>
+          </div>
+        </div>
+        <div class="split-content fade-up cta-delay">
+          <div class="badge mb-2">SYSTEM CORE NETWORK</div>
+          <h2 class="section-title">Engineering <span class="text-accent-pri text-glow">Intelligence.</span></h2>
+          <p class="section-desc mb-4">
+            We build systems that think, learn, and operate in the real world. Tributum Tech connects the future through
+            advanced AI, robotics, and robust network infrastructure.
+          </p>
+          <a href="about.html" class="btn btn-primary"><span class="btn-text">Discover The Network</span></a>
+        </div>
+      </section>
+
+      <!-- OPERATIONAL STREAMS: Services Preview -->
+      <section id="services-preview" class="container text-center" style="padding-top: 5rem;">
+        <div class="badge mb-2 fade-up">OPERATIONAL STREAMS</div>
+        <h2 class="section-title mb-4 fade-up">Our <span class="text-accent-sec text-glow">Capabilities.</span></h2>
+
+
+        <div class="fade-up" style="margin-bottom: 3rem;">
+          <a href="services.html" class="btn btn-secondary"><span class="btn-text">View All Operations</span></a>
+        </div>
+      </section>
+
+      <!-- INITIATE LINK: Contact CTA -->
+      <section id="contact-cta" class="container text-center" style="padding-bottom: 5rem;">
+        <div class="glass-card contact-cta-card fade-up">
+          <h2 class="section-title mb-2">Ready to Scale Your <span class="text-accent-pri text-glow">Enterprise?</span>
+          </h2>
+          <p class="section-desc mb-4 mx-auto" style="max-width: 600px;">
+            Partner with Tributum Tech to integrate cutting-edge AI and robotics into your operational workflow.
+          </p>
+          <a href="https://wa.me/919821833353" target="_blank" class="btn btn-primary"
+            style="display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path
+                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-1.126-.413-2.328-.955-3.847-3.342-3.963-3.497-.116-.154-.946-1.258-.946-2.396 0-1.139.593-1.696.804-1.926.212-.23.461-.287.614-.287.154 0 .307.001.442.008.144.007.338-.053.53.411.192.466.653 1.594.711 1.71.058.116.096.25.019.405-.077.154-.115.25-.23.384-.116.135-.245.231-.346.347-.115.13-.23.275-.098.502.131.227.584.965 1.257 1.565.867.774 1.594 1.013 1.825 1.13.23.116.365.096.501-.058.135-.154.577-.673.73-1.031.154-.358.308-.299.52-.222.212.077 1.346.634 1.577.75.23.115.385.173.442.269.058.096.058.557-.087.962z" />
+            </svg>
+            <span class="btn-text">Contact Us</span>
+          </a>
+        </div>
+      </section>
+      <!-- Global Footer -->
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
+              <div class="logo-glow-container">
+                <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+              </div>
+              <span class="logo-text">TRIBUTUM TECH</span>
+            </a>
+            <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>
+          </div>
+          <div class="footer-links">
+            <h4>System Links</h4>
+            <ul>
+              <li><a href="index.html">The Interface</a></li>
+              <li><a href="about.html">The Network</a></li>
+              <li><a href="services.html">The Stream</a></li>
+              <li><a href="contact.html">Connect</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h4>Connect Us</h4>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/company/tributum-tech/" class="social-icon" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/tributumtech" class="social-icon" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a href="tel:+919821833353" class="social-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
+              </a>
+              <a href="https://wa.me/79954952481" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                  <path
+                    d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-1.126-.413-2.328-.955-3.847-3.342-3.963-3.497-.116-.154-.946-1.258-.946-2.396 0-1.139.593-1.696.804-1.926.212-.23.461-.287.614-.287.154 0 .307.001.442.008.144.007.338-.053.53.411.192.466.653 1.594.711 1.71.058.116.096.25.019.405-.077.154-.115.25-.23.384-.116.135-.245.231-.346.347-.115.13-.23.275-.098.502.131.227.584.965 1.257 1.565.867.774 1.594 1.013 1.825 1.13.23.116.365.096.501-.058.135-.154.577-.673.73-1.031.154-.358.308-.299.52-.222.212.077 1.346.634 1.577.75.23.115.385.173.442.269.058.096.058.557-.087.962z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <p>&copy; 2026 T Tributum Tech. All rights reserved.</p>
+            <div class="status-line">
+              <span class="status-dot"></span> Server: OP-1 // Latency: 12ms
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div> <!-- END smooth-content -->
+  </div> <!-- END smooth-wrapper -->
+
+  <!-- Scripts: Lenis (Smooth Scroll), GSAP, ScrollTrigger -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Custom JS -->
+
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
