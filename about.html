@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TRIBUTUM TECH - The Neural Network</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/animations.css">
+  <style>
+    /* About Page Specific Styles */
+    .about-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-start;
+      padding-top: 12vh;
+      padding-bottom: 4rem;
+    }
+
+    #neural-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 10;
+      max-width: 800px;
+    }
+
+    .timeline-section {
+      padding: 1rem 0 5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+
+
+    .timeline-year {
+      font-family: var(--font-heading);
+      color: var(--accent-secondary);
+      line-height: 1;
+      transition: all 0.5s;
+    }
+
+    .dash-card:hover .timeline-year {
+      opacity: 1 !important;
+      text-shadow: 0 0 20px var(--accent-secondary-glow);
+    }
+
+    .timeline-content p {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+    }
+
+    /* Mobile adjustments for timeline cards */
+    @media (max-width: 992px) {
+      .timeline-section[style*="grid"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-section[style*="grid"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="loading">
+
+  <!-- Global Holographic Interface Overlay -->
+  <div class="holographic-overlay">
+    <div class="scanlines"></div>
+    <div class="crt-flicker"></div>
+  </div>
+
+  <header class="glass-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
+        <div class="logo-glow-container">
+          <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+        </div>
+        <span class="logo-text">TRIBUTUM TECH</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <section class="about-hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="holographic-grid"></div>
+        <canvas id="neural-canvas"></canvas>
+        <div class="container about-content parallax-element" data-speed="0.8">
+          <div class="badge fade-up">THE NEURAL NETWORK</div>
+          <h1 class="hero-title fade-up title-delay">
+            Minds Behind the <br><span class="text-accent-sec text-glow">Machine.</span>
+          </h1>
+          <p class="hero-subtitle fade-up subtitle-delay">
+            We are a collective of engineers, researchers, and visionaries building interconnected AI & Robotics
+            solutions that scale.
+          </p>
+        </div>
+      </section>
+
+      <section class="timeline-section container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <div class="dash-card glass-card timeline-item reveal parallax-element" data-speed="1.1" style="flex-direction: column; gap: 1rem; align-items: flex-start; margin-bottom: 0;">
+          <div class="timeline-year" style="font-size: 2.5rem; opacity: 0.8; margin-bottom: 1rem;">01</div>
+          <div class="timeline-content">
+            <h3>The Genesis Node</h3>
+            <p style="font-size: 0.95rem;">Founded on the belief that intelligent hardware requires equally intelligent software, our initial
+              framework established the core protocols for scalable real-time machine learning deployment.</p>
+          </div>
+        </div>
+
+        <div class="dash-card glass-card timeline-item reveal parallax-element" data-speed="1.05" style="flex-direction: column; gap: 1rem; align-items: flex-start; margin-bottom: 0;">
+          <div class="timeline-year" style="font-size: 2.5rem; opacity: 0.8; margin-bottom: 1rem;">02</div>
+          <div class="timeline-content">
+            <h3>Synaptic Expansion</h3>
+            <p style="font-size: 0.95rem;">Integrating advanced robotics control with edge computing, we shattered the latency barriers that
+              traditionally crippled autonomous navigation in unpredictable environments.</p>
+          </div>
+        </div>
+
+        <div class="dash-card glass-card timeline-item reveal parallax-element" data-speed="1" style="flex-direction: column; gap: 1rem; align-items: flex-start; margin-bottom: 0;">
+          <div class="timeline-year" style="font-size: 2.5rem; opacity: 0.8; margin-bottom: 1rem;">03</div>
+          <div class="timeline-content">
+            <h3>Global Intelligence</h3>
+            <p style="font-size: 0.95rem;">Today, our neural-inspired data pipelines process petabytes of multi-modal sensory inputs, powering
+              intelligent agents that not only learn but dynamically adapt across international hardware networks.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
+              <div class="logo-glow-container">
+                <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+              </div>
+              <span class="logo-text">TRIBUTUM TECH</span>
+            </a>
+            <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>
+          </div>
+          <div class="footer-links">
+            <h4>System Links</h4>
+            <ul>
+              <li><a href="index.html">The Interface</a></li>
+              <li><a href="about.html">The Network</a></li>
+              <li><a href="services.html">The Stream</a></li>
+              <li><a href="contact.html">Connect</a></li>
+            </ul>
+          </div>
+          <div class="footer-social">
+            <h4>Connect Us</h4>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/company/tributum-tech/" class="social-icon" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/tributumtech" class="social-icon" target="_blank"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a href="tel:+919821833353" class="social-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
+              </a>
+              <a href="https://wa.me/79954952481" class="social-icon" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                  <path
+                    d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.171.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-1.126-.413-2.328-.955-3.847-3.342-3.963-3.497-.116-.154-.946-1.258-.946-2.396 0-1.139.593-1.696.804-1.926.212-.23.461-.287.614-.287.154 0 .307.001.442.008.144.007.338-.053.53.411.192.466.653 1.594.711 1.71.058.116.096.25.019.405-.077.154-.115.25-.23.384-.116.135-.245.231-.346.347-.115.13-.23.275-.098.502.131.227.584.965 1.257 1.565.867.774 1.594 1.013 1.825 1.13.23.116.365.096.501-.058.135-.154.577-.673.73-1.031.154-.358.308-.299.52-.222.212.077 1.346.634 1.577.75.23.115.385.173.442.269.058.096.058.557-.087.962z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <p>&copy; 2026 T Tributum Tech. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script src="./js/main.js"></script>
+  <script src="./js/about-canvas.js"></script>
+</body>
+
+</html>
