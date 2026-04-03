@@ -271,9 +271,9 @@ h6 {
 }
 
 .brand-logo {
-  height: 32px;
+  height: 54px; /* Increased from 42px for the full logo */
   width: auto;
-  filter: invert(1) brightness(1.2) contrast(1.2);
+  filter: brightness(1.1) contrast(1.1);
   mix-blend-mode: screen;
   object-fit: contain;
 }
