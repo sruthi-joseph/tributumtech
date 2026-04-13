@@ -127,31 +127,336 @@
       margin-top: 4rem;
     }
 
-    #service-bg-canvas {
+    /* ─── Animated BG System ─── */
+    #course-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.6;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      background: #020918;
       pointer-events: none;
     }
 
-    /* Theme Definitions */
-    .theme-ai-data { --theme-accent: #00F0FF; --theme-accent-glow: rgba(0, 240, 255, 0.6); }
-    .theme-ml-vision { --theme-accent: #BF00FF; --theme-accent-glow: rgba(191, 0, 255, 0.6); }
-    .theme-robotics { --theme-accent: #FFB300; --theme-accent-glow: rgba(255, 179, 0, 0.6); }
-    .theme-cloud-infra { --theme-accent: #00FFC2; --theme-accent-glow: rgba(0, 255, 194, 0.6); }
-    .theme-software { --theme-accent: #0077FF; --theme-accent-glow: rgba(0, 119, 255, 0.6); }
-    .theme-embedded { --theme-accent: #FF0055; --theme-accent-glow: rgba(255, 0, 85, 0.6); }
-    .theme-automotive { --theme-accent: #F0F0FF; --theme-accent-glow: rgba(240, 240, 255, 0.6); }
-    .theme-automation { --theme-accent: #A7FF00; --theme-accent-glow: rgba(167, 255, 0, 0.6); }
-    .theme-ui-systems { --theme-accent: #FF00B3; --theme-accent-glow: rgba(255, 0, 179, 0.6); }
-    .theme-fleet { --theme-accent: #FFD700; --theme-accent-glow: rgba(255, 215, 0, 0.6); }
-    .theme-prototyping { --theme-accent: #FF00FF; --theme-accent-glow: rgba(255, 0, 255, 0.6); }
-    .theme-custom-rnd { --theme-accent: #00BFFF; --theme-accent-glow: rgba(0, 191, 255, 0.6); }
-    .theme-algo-dev { --theme-accent: #6600FF; --theme-accent-glow: rgba(102, 0, 255, 0.6); }
+    /* Main radial glow */
+    #course-bg .bg-glow-center {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, var(--theme-bg-glow-1), transparent 70%);
+      animation: breathe 6s ease-in-out infinite;
+    }
+    #course-bg .bg-glow-corner {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--theme-bg-glow-2), transparent 70%);
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    #course-bg .bg-glow-corner.tl { top: -200px; left: -200px; animation-delay: 0s; }
+    #course-bg .bg-glow-corner.br { bottom: -200px; right: -200px; animation-delay: -7s; }
+
+    /* Tech grid */
+    #course-bg .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--theme-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--theme-grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 4s ease-in-out infinite;
+    }
+
+    /* Floating orbs */
+    #course-bg .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--theme-orb-color), transparent 70%);
+      animation: floatOrb var(--orb-dur, 12s) ease-in-out infinite alternate;
+    }
+    #course-bg .orb:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 15%; --orb-dur: 11s; }
+    #course-bg .orb:nth-child(2) { width: 200px; height: 200px; top: 50%; left: 70%; --orb-dur: 15s; animation-delay: -4s; }
+    #course-bg .orb:nth-child(3) { width: 150px; height: 150px; top: 75%; left: 30%; --orb-dur: 9s; animation-delay: -7s; }
+    #course-bg .orb:nth-child(4) { width: 100px; height: 100px; top: 20%; left: 80%; --orb-dur: 13s; animation-delay: -2s; }
+
+    /* Rotating tech rings */
+    #course-bg .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--theme-ring-color);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #course-bg .ring:nth-child(1) { width: 500px; height: 500px; animation: spinRing 25s linear infinite; }
+    #course-bg .ring:nth-child(2) { width: 750px; height: 750px; animation: spinRing 40s linear infinite reverse; }
+    #course-bg .ring:nth-child(3) { width: 1000px; height: 1000px; animation: spinRing 60s linear infinite; border-style: dashed; }
+
+    /* Scan line sweep */
+    #course-bg .scanline-sweep {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--theme-scan-color), transparent);
+      animation: scanSweep 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    /* Data particles (CSS only) */
+    #course-bg .particles {
+      position: absolute;
+      inset: 0;
+    }
+    #course-bg .particle {
+      position: absolute;
+      width: var(--p-size, 3px);
+      height: var(--p-size, 3px);
+      border-radius: 50%;
+      background: var(--theme-particle-color);
+      animation: particleFly var(--p-dur, 8s) linear infinite;
+      opacity: 0;
+    }
+
+    /* Corner tech brackets */
+    #course-bg .corner-bracket {
+      position: absolute;
+      width: 60px; height: 60px;
+      border-color: var(--theme-bracket-color);
+      border-style: solid;
+      border-width: 0;
+      opacity: 0.5;
+      animation: bracketPulse 3s ease-in-out infinite;
+    }
+    #course-bg .corner-bracket.tl { top: 40px; left: 40px; border-top-width: 2px; border-left-width: 2px; }
+    #course-bg .corner-bracket.tr { top: 40px; right: 40px; border-top-width: 2px; border-right-width: 2px; }
+    #course-bg .corner-bracket.bl { bottom: 40px; left: 40px; border-bottom-width: 2px; border-left-width: 2px; }
+    #course-bg .corner-bracket.br { bottom: 40px; right: 40px; border-bottom-width: 2px; border-right-width: 2px; }
+
+    /* Diagonal light streaks */
+    #course-bg .streak {
+      position: absolute;
+      width: 1px;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--theme-streak-color), transparent);
+      animation: streakFall var(--s-dur, 6s) linear infinite;
+      opacity: 0;
+    }
+
+    /* ─── Animations ─── */
+    @keyframes breathe {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(60px, 40px); }
+    }
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.08; }
+    }
+    @keyframes floatOrb {
+      from { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      to { transform: translate(30px, -40px) scale(1.15); opacity: 0.5; }
+    }
+    @keyframes spinRing {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @keyframes scanSweep {
+      0% { top: -10px; opacity: 0; }
+      5% { opacity: 0.6; }
+      95% { opacity: 0.6; }
+      100% { top: 100vh; opacity: 0; }
+    }
+    @keyframes particleFly {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-20px) translateX(var(--p-dx, 20px)); opacity: 0; }
+    }
+    @keyframes bracketPulse {
+      0%, 100% { opacity: 0.3; width: 60px; height: 60px; }
+      50% { opacity: 0.7; width: 80px; height: 80px; }
+    }
+    @keyframes streakFall {
+      0% { top: -200px; opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.5; }
+      100% { top: 100vh; opacity: 0; }
+    }
+    @keyframes hexSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ─── Theme Variable Maps ─── */
+    /* ai-data */ body.theme-ai-data {
+      --theme-accent: #00F2FF;
+      --theme-accent-glow: rgba(0, 242, 255, 0.6);
+      --theme-bg-glow-1: rgba(0, 200, 255, 0.12);
+      --theme-bg-glow-2: rgba(0, 242, 255, 0.08);
+      --theme-grid-line: rgba(0, 242, 255, 0.06);
+      --theme-orb-color: rgba(0, 242, 255, 0.18);
+      --theme-ring-color: rgba(0, 242, 255, 0.12);
+      --theme-scan-color: rgba(0, 242, 255, 0.9);
+      --theme-particle-color: #00F2FF;
+      --theme-bracket-color: #00F2FF;
+      --theme-streak-color: rgba(0, 242, 255, 0.7);
+    }
+    /* ml-vision */ body.theme-ml-vision {
+      --theme-accent: #BF00FF;
+      --theme-accent-glow: rgba(191, 0, 255, 0.6);
+      --theme-bg-glow-1: rgba(140, 0, 255, 0.14);
+      --theme-bg-glow-2: rgba(191, 0, 255, 0.09);
+      --theme-grid-line: rgba(191, 0, 255, 0.07);
+      --theme-orb-color: rgba(191, 0, 255, 0.18);
+      --theme-ring-color: rgba(191, 0, 255, 0.13);
+      --theme-scan-color: rgba(191, 0, 255, 0.9);
+      --theme-particle-color: #BF00FF;
+      --theme-bracket-color: #BF00FF;
+      --theme-streak-color: rgba(191, 0, 255, 0.7);
+    }
+    /* robotics */ body.theme-robotics {
+      --theme-accent: #FFB300;
+      --theme-accent-glow: rgba(255, 179, 0, 0.6);
+      --theme-bg-glow-1: rgba(255, 150, 0, 0.12);
+      --theme-bg-glow-2: rgba(255, 179, 0, 0.08);
+      --theme-grid-line: rgba(255, 179, 0, 0.06);
+      --theme-orb-color: rgba(255, 179, 0, 0.16);
+      --theme-ring-color: rgba(255, 179, 0, 0.11);
+      --theme-scan-color: rgba(255, 179, 0, 0.9);
+      --theme-particle-color: #FFB300;
+      --theme-bracket-color: #FFB300;
+      --theme-streak-color: rgba(255, 179, 0, 0.7);
+    }
+    /* cloud-infra */ body.theme-cloud-infra {
+      --theme-accent: #00FFC2;
+      --theme-accent-glow: rgba(0, 255, 194, 0.6);
+      --theme-bg-glow-1: rgba(0, 220, 170, 0.12);
+      --theme-bg-glow-2: rgba(0, 255, 194, 0.08);
+      --theme-grid-line: rgba(0, 255, 194, 0.06);
+      --theme-orb-color: rgba(0, 255, 194, 0.16);
+      --theme-ring-color: rgba(0, 255, 194, 0.11);
+      --theme-scan-color: rgba(0, 255, 194, 0.9);
+      --theme-particle-color: #00FFC2;
+      --theme-bracket-color: #00FFC2;
+      --theme-streak-color: rgba(0, 255, 194, 0.7);
+    }
+    /* software */ body.theme-software {
+      --theme-accent: #0077FF;
+      --theme-accent-glow: rgba(0, 119, 255, 0.6);
+      --theme-bg-glow-1: rgba(0, 100, 255, 0.13);
+      --theme-bg-glow-2: rgba(0, 119, 255, 0.09);
+      --theme-grid-line: rgba(0, 119, 255, 0.07);
+      --theme-orb-color: rgba(0, 119, 255, 0.18);
+      --theme-ring-color: rgba(0, 119, 255, 0.13);
+      --theme-scan-color: rgba(0, 150, 255, 0.9);
+      --theme-particle-color: #0099FF;
+      --theme-bracket-color: #0077FF;
+      --theme-streak-color: rgba(0, 119, 255, 0.7);
+    }
+    /* embedded */ body.theme-embedded {
+      --theme-accent: #FF0055;
+      --theme-accent-glow: rgba(255, 0, 85, 0.6);
+      --theme-bg-glow-1: rgba(255, 0, 60, 0.12);
+      --theme-bg-glow-2: rgba(255, 0, 85, 0.08);
+      --theme-grid-line: rgba(255, 0, 85, 0.06);
+      --theme-orb-color: rgba(255, 0, 85, 0.16);
+      --theme-ring-color: rgba(255, 0, 85, 0.11);
+      --theme-scan-color: rgba(255, 0, 85, 0.9);
+      --theme-particle-color: #FF0055;
+      --theme-bracket-color: #FF0055;
+      --theme-streak-color: rgba(255, 0, 85, 0.7);
+    }
+    /* automotive */ body.theme-automotive {
+      --theme-accent: #D0D4FF;
+      --theme-accent-glow: rgba(200, 210, 255, 0.6);
+      --theme-bg-glow-1: rgba(180, 190, 255, 0.10);
+      --theme-bg-glow-2: rgba(200, 210, 255, 0.07);
+      --theme-grid-line: rgba(200, 210, 255, 0.06);
+      --theme-orb-color: rgba(200, 210, 255, 0.14);
+      --theme-ring-color: rgba(200, 210, 255, 0.10);
+      --theme-scan-color: rgba(220, 230, 255, 0.85);
+      --theme-particle-color: #C8D4FF;
+      --theme-bracket-color: #D0D4FF;
+      --theme-streak-color: rgba(200, 210, 255, 0.6);
+    }
+    /* automation */ body.theme-automation {
+      --theme-accent: #A7FF00;
+      --theme-accent-glow: rgba(167, 255, 0, 0.6);
+      --theme-bg-glow-1: rgba(140, 240, 0, 0.12);
+      --theme-bg-glow-2: rgba(167, 255, 0, 0.08);
+      --theme-grid-line: rgba(167, 255, 0, 0.06);
+      --theme-orb-color: rgba(167, 255, 0, 0.15);
+      --theme-ring-color: rgba(167, 255, 0, 0.10);
+      --theme-scan-color: rgba(167, 255, 0, 0.9);
+      --theme-particle-color: #A7FF00;
+      --theme-bracket-color: #A7FF00;
+      --theme-streak-color: rgba(167, 255, 0, 0.7);
+    }
+    /* ui-systems */ body.theme-ui-systems {
+      --theme-accent: #FF00B3;
+      --theme-accent-glow: rgba(255, 0, 179, 0.6);
+      --theme-bg-glow-1: rgba(255, 0, 150, 0.13);
+      --theme-bg-glow-2: rgba(255, 0, 179, 0.09);
+      --theme-grid-line: rgba(255, 0, 179, 0.06);
+      --theme-orb-color: rgba(255, 0, 179, 0.17);
+      --theme-ring-color: rgba(255, 0, 179, 0.12);
+      --theme-scan-color: rgba(255, 0, 179, 0.9);
+      --theme-particle-color: #FF00B3;
+      --theme-bracket-color: #FF00B3;
+      --theme-streak-color: rgba(255, 0, 179, 0.7);
+    }
+    /* fleet */ body.theme-fleet {
+      --theme-accent: #FFD700;
+      --theme-accent-glow: rgba(255, 215, 0, 0.6);
+      --theme-bg-glow-1: rgba(255, 200, 0, 0.12);
+      --theme-bg-glow-2: rgba(255, 215, 0, 0.08);
+      --theme-grid-line: rgba(255, 215, 0, 0.05);
+      --theme-orb-color: rgba(255, 215, 0, 0.15);
+      --theme-ring-color: rgba(255, 215, 0, 0.10);
+      --theme-scan-color: rgba(255, 215, 0, 0.9);
+      --theme-particle-color: #FFD700;
+      --theme-bracket-color: #FFD700;
+      --theme-streak-color: rgba(255, 215, 0, 0.7);
+    }
+    /* prototyping */ body.theme-prototyping {
+      --theme-accent: #FF00FF;
+      --theme-accent-glow: rgba(255, 0, 255, 0.6);
+      --theme-bg-glow-1: rgba(220, 0, 255, 0.13);
+      --theme-bg-glow-2: rgba(255, 0, 255, 0.09);
+      --theme-grid-line: rgba(255, 0, 255, 0.06);
+      --theme-orb-color: rgba(255, 0, 255, 0.17);
+      --theme-ring-color: rgba(255, 0, 255, 0.12);
+      --theme-scan-color: rgba(255, 0, 255, 0.9);
+      --theme-particle-color: #FF00FF;
+      --theme-bracket-color: #FF00FF;
+      --theme-streak-color: rgba(255, 0, 255, 0.7);
+    }
+    /* custom-rnd */ body.theme-custom-rnd {
+      --theme-accent: #00BFFF;
+      --theme-accent-glow: rgba(0, 191, 255, 0.6);
+      --theme-bg-glow-1: rgba(0, 170, 255, 0.12);
+      --theme-bg-glow-2: rgba(0, 191, 255, 0.08);
+      --theme-grid-line: rgba(0, 191, 255, 0.06);
+      --theme-orb-color: rgba(0, 191, 255, 0.17);
+      --theme-ring-color: rgba(0, 191, 255, 0.12);
+      --theme-scan-color: rgba(0, 191, 255, 0.9);
+      --theme-particle-color: #00BFFF;
+      --theme-bracket-color: #00BFFF;
+      --theme-streak-color: rgba(0, 191, 255, 0.7);
+    }
+    /* algo-dev */ body.theme-algo-dev {
+      --theme-accent: #7B00FF;
+      --theme-accent-glow: rgba(123, 0, 255, 0.6);
+      --theme-bg-glow-1: rgba(100, 0, 255, 0.14);
+      --theme-bg-glow-2: rgba(123, 0, 255, 0.10);
+      --theme-grid-line: rgba(123, 0, 255, 0.07);
+      --theme-orb-color: rgba(123, 0, 255, 0.18);
+      --theme-ring-color: rgba(123, 0, 255, 0.13);
+      --theme-scan-color: rgba(123, 0, 255, 0.9);
+      --theme-particle-color: #7B00FF;
+      --theme-bracket-color: #7B00FF;
+      --theme-streak-color: rgba(123, 0, 255, 0.7);
+    }
 
     /* Override dynamic variables */
     .hero-title span.text-accent-pri { color: var(--theme-accent) !important; }
@@ -161,7 +466,7 @@
     .btn-primary { 
       background: var(--theme-accent) !important; 
       border-color: var(--theme-accent) !important;
-      color: #fff !important; /* Force high contrast white text */
+      color: #fff !important;
       box-shadow: 0 0 20px var(--theme-accent-glow);
     }
     .btn-primary .btn-glow { background: var(--theme-accent); }
@@ -175,7 +480,7 @@
     <div class="container nav-container">
       <a href="index.html" class="logo">
         <div class="logo-glow-container">
-          <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+          <img src="./logo.png" class="brand-logo" alt="Tributum Tech">
         </div>
       </a>
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -192,7 +497,26 @@
     </div>
   </header>
 
-  <canvas id="service-bg-canvas"></canvas>
+  <!-- Animated Course Background -->
+  <div id="course-bg">
+    <div class="bg-glow-center"></div>
+    <div class="bg-glow-corner tl"></div>
+    <div class="bg-glow-corner br"></div>
+    <div class="bg-grid"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="scanline-sweep"></div>
+    <div class="corner-bracket tl"></div>
+    <div class="corner-bracket tr"></div>
+    <div class="corner-bracket bl"></div>
+    <div class="corner-bracket br"></div>
+    <div class="particles" id="bg-particles"></div>
+  </div>
 
   <div id="smooth-wrapper">
     <div id="smooth-content">
@@ -225,7 +549,7 @@
           <div class="footer-brand">
             <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
               <div class="logo-glow-container">
-                <img src="./logo.jpeg" class="brand-logo" alt="Tributum Tech">
+                <img src="./logo.png" class="brand-logo" alt="Tributum Tech">
               </div>
             </a>
             <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>
@@ -273,6 +597,14 @@
         </div>
         <div class="footer-bottom">
           <div class="container">
+            <div class="dev-credit">
+              <a href="https://www.instagram.com/intellex.web?igsh=MWZyenU0bWc3M2RxOQ==" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259.014-3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+                <span>Meet The Developers</span>
+              </a>
+            </div>
             <p>&copy; 2026 T Tributum Tech. All rights reserved.</p>
           </div>
         </div>
@@ -312,63 +644,50 @@
       tempDiv.innerHTML = titleHTML;
       document.title = tempDiv.innerText + " | TRIBUTUM TECH";
 
-      // Background Animation
-      const canvas = document.getElementById('service-bg-canvas');
-      const ctx = canvas.getContext('2d');
-      let points = [];
-      const themeColor = getComputedStyle(document.body).getPropertyValue('--theme-accent').trim();
+      // ─── CSS-Animated Background: Spawn particles and streaks ───
+      const particleContainer = document.getElementById('bg-particles');
+      const NUM_PARTICLES = 35;
+      const NUM_STREAKS = 12;
 
-      function init() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        points = [];
-        for (let i = 0; i < 60; i++) {
-          points.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            size: Math.random() * 2 + 1
-          });
-        }
+      // Spawn floating particles rising from bottom
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 4 + 1.5;
+        const dur = Math.random() * 10 + 8;
+        const delay = Math.random() * dur * -1; // stagger by starting mid-cycle
+        const dx = (Math.random() - 0.5) * 120;
+        const leftPos = Math.random() * 100;
+        p.style.cssText = `
+          left: ${leftPos}%;
+          --p-size: ${size}px;
+          --p-dur: ${dur}s;
+          --p-dx: ${dx}px;
+          animation-delay: ${delay}s;
+          box-shadow: 0 0 ${size * 3}px var(--theme-particle-color);
+        `;
+        particleContainer.appendChild(p);
       }
 
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = themeColor;
-        ctx.strokeStyle = themeColor;
-        ctx.lineWidth = 0.5;
-
-        points.forEach((p, i) => {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-
-          for (let j = i + 1; j < points.length; j++) {
-            const p2 = points[j];
-            const dist = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2);
-            if (dist < 150) {
-              ctx.globalAlpha = 1 - (dist / 150);
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.stroke();
-            }
-          }
-        });
-        ctx.globalAlpha = 1;
-        requestAnimationFrame(animate);
+      // Spawn diagonal light streaks
+      const bgEl = document.getElementById('course-bg');
+      for (let i = 0; i < NUM_STREAKS; i++) {
+        const s = document.createElement('div');
+        s.className = 'streak';
+        const dur = Math.random() * 6 + 5;
+        const delay = Math.random() * -dur;
+        const height = Math.random() * 200 + 100;
+        const angle = Math.random() * 40 - 20;
+        s.style.cssText = `
+          left: ${Math.random() * 100}%;
+          height: ${height}px;
+          transform: rotate(${angle}deg);
+          --s-dur: ${dur}s;
+          animation-delay: ${delay}s;
+          box-shadow: 0 0 6px var(--theme-streak-color);
+        `;
+        bgEl.appendChild(s);
       }
-
-      window.addEventListener('resize', init);
-      init();
-      animate();
     });
   </script>
 </body>

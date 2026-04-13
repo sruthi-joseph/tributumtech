@@ -271,11 +271,12 @@ h6 {
 }
 
 .brand-logo {
-  height: 54px; /* Increased from 42px for the full logo */
+  height: 54px; /* Base height for layout */
   width: auto;
   filter: brightness(1.1) contrast(1.1);
-  mix-blend-mode: screen;
   object-fit: contain;
+  transform: scale(1.35); /* Increased size visually without expanding the 80px header */
+  transform-origin: left center;
 }
 
 /* ==========================================================================
@@ -506,6 +507,27 @@ h6 {
   align-items: center;
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+.dev-credit {
+  margin-bottom: 0.5rem;
+}
+
+.dev-credit a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  transition: color var(--transit-fast);
+  font-weight: 500;
+}
+
+.dev-credit a:hover {
+  color: var(--accent-primary);
+}
+
+.dev-credit svg {
+  opacity: 0.8;
 }
 
 .status-line {
