@@ -126,20 +126,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animate();
 
-  // Custom Parallax for About page content
-  gsap.utils.toArray('.parallax-element').forEach(el => {
-    const speed = el.getAttribute('data-speed') || 1;
-    gsap.to(el, {
-      y: () => (1 - speed) * ScrollTrigger.maxScroll(window),
-      ease: "none",
-      scrollTrigger: {
-        trigger: el,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 0
-      }
+  // Custom Parallax for About page content (Desktop Only)
+  if (window.innerWidth > 768) {
+    gsap.utils.toArray('.parallax-element').forEach(el => {
+      const speed = el.getAttribute('data-speed') || 1;
+      gsap.to(el, {
+        y: () => (1 - speed) * ScrollTrigger.maxScroll(window),
+        ease: "none",
+        scrollTrigger: {
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0
+        }
+      });
     });
-  });
+  }
 
   // Timeline Scroll Animation
   gsap.utils.toArray('.timeline-item').forEach(el => {

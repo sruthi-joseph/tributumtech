@@ -84,109 +84,159 @@
 
     .service-item {
       position: relative;
-      background: rgba(10, 20, 40, 0.2);
+      background: rgba(10, 20, 40, 0.4);
       border-left: 4px solid transparent;
-      padding: 2rem 3rem;
+      padding: 3rem 4rem;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
-      border-radius: 0 8px 8px 0;
-      border-bottom: 1px solid rgba(0, 242, 255, 0.05);
+      border-radius: 8px;
+      border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+      margin-bottom: 0.5rem;
     }
 
-    .service-item::before {
-      content: '';
+    /* Background Image Container */
+    .service-bg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(0, 242, 255, 0.08) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 0;
+      z-index: 1; /* Above parent background */
+      background-size: cover;
+      background-position: center;
+      transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+      opacity: 0.5; /* High base visibility */
+      filter: saturate(1.1);
+    }
+
+    /* Dark Overlay for Readability */
+    .service-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, 
+        rgba(2, 9, 24, 0.9) 0%, 
+        rgba(2, 9, 24, 0.5) 50%, 
+        rgba(2, 9, 24, 0.1) 100%);
+      z-index: 2; /* Over background image */
+      transition: all 0.6s ease;
     }
 
     .service-item:hover {
-      background: rgba(10, 20, 40, 0.5);
+      background: rgba(10, 20, 60, 0.45);
       border-left-color: var(--accent-primary);
-      transform: translateX(10px);
+      transform: translateX(25px) scale(1.01);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     }
 
-    .service-item:hover::before {
-      opacity: 1;
+    .service-item:hover .service-bg {
+      transform: scale(1.1);
+      opacity: 0.9; /* Near full visibility on hover */
+      filter: saturate(1.4) contrast(1.1);
+    }
+
+    .service-item:hover .service-overlay {
+      background: linear-gradient(90deg, 
+        rgba(5, 11, 26, 0.8) 0%, 
+        rgba(5, 11, 26, 0.4) 50%, 
+        rgba(5, 11, 26, 0.1) 100%);
     }
 
     .service-main-content {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 2.5rem;
       position: relative;
-      z-index: 1;
-    }
-
-    .service-num {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      color: var(--accent-primary);
-      opacity: 0.6;
-      letter-spacing: 0.15em;
-      min-width: 60px;
+      z-index: 3; /* Top layer */
     }
 
     .service-title {
-      font-size: 2rem;
+      font-size: 2.8rem;
       font-weight: 500;
-      color: var(--text-main);
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+      transition: all 0.4s ease;
       margin: 0;
-      transition: all 0.3s ease;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
     }
 
     .service-item:hover .service-title {
-      color: #fff;
-      text-shadow: 0 0 20px var(--accent-primary-glow);
-      transform: translateX(5px);
+      color: var(--accent-primary);
+      transform: translateX(10px);
+      text-shadow: 0 0 20px rgba(0, 242, 255, 0.4), 2px 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     .service-plus-icon {
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: var(--accent-primary);
-      transition: transform 0.4s ease, opacity 0.3s ease;
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
       position: relative;
-      z-index: 1;
+      z-index: 2;
       opacity: 0.6;
     }
 
     .service-item:hover .service-plus-icon {
-      transform: rotate(90deg);
+      transform: rotate(90deg) scale(1.2);
       opacity: 1;
     }
 
+    /* Mapping backgrounds */
+    .service-item[data-service="01"] .service-bg { background-image: url('./assets/service_01.png'); }
+    .service-item[data-service="02"] .service-bg { background-image: url('./assets/service_02.png'); }
+    .service-item[data-service="03"] .service-bg { background-image: url('./assets/service_03.png'); }
+    .service-item[data-service="04"] .service-bg { background-image: url('./assets/hero_ai_core_4k.png'); }
+    .service-item[data-service="05"] .service-bg { background-image: url('./assets/service_05.png'); }
+    .service-item[data-service="06"] .service-bg { background-image: url('./assets/service_06.png'); }
+    .service-item[data-service="07"] .service-bg { background-image: url('./assets/hero-main.png'); }
+    .service-item[data-service="08"] .service-bg { background-image: url('./assets/ai_bulb_hero.png'); }
+    .service-item[data-service="09"] .service-bg { background-image: url('./assets/service_05.png'); filter: hue-rotate(45deg); }
+    .service-item[data-service="10"] .service-bg { background-image: url('./assets/globe-rotator.png'); }
+    .service-item[data-service="11"] .service-bg { background-image: url('./assets/service_03.png'); filter: hue-rotate(-45deg); }
+    .service-item[data-service="12"] .service-bg { background-image: url('./assets/vibrant_hero_4k.png'); }
+    .service-item[data-service="13"] .service-bg { background-image: url('./assets/service_01.png'); filter: hue-rotate(90deg); }
+
     /* Mobile adjustments */
     @media (max-width: 768px) {
+      .services-hero {
+        padding-top: 110px;
+        padding-bottom: 3rem;
+        min-height: auto;
+      }
+
       .services-list {
         padding: 2rem 0;
+        gap: 0.75rem;
       }
 
       .service-item {
-        padding: 1.5rem;
+        padding: 2.5rem 1.5rem;
+        transform: none !important; /* Disable hover translation */
+      }
+
+      .service-item:hover {
+        transform: none !important;
+      }
+
+      .service-bg {
+        opacity: 0.75; /* Higher visibility on mobile by default */
+        filter: saturate(1.2) contrast(1.1) brightness(0.8);
       }
 
       .service-title {
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+        line-height: 1.2;
       }
 
       .service-main-content {
-        gap: 1rem;
+        gap: 1.5rem;
       }
 
-      .service-num {
-        min-width: 45px;
-        font-size: 0.8rem;
+      .service-plus-icon {
+        font-size: 1.5rem;
+        opacity: 0.8;
       }
     }
 
@@ -259,6 +309,11 @@
           <img src="./logo.png" class="brand-logo" alt="Tributum Tech">
         </div>
       </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="main-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -288,104 +343,117 @@
       <section class="container services-wrapper">
         <div class="services-list">
           <div class="service-item fade-up" data-theme="ai-data" data-service="01">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">01 /</span>
               <h2 class="service-title">AI Data & Intelligence</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="ml-vision" data-service="02">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">02 /</span>
               <h2 class="service-title">AI & Machine Learning</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="robotics" data-service="03">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">03 /</span>
               <h2 class="service-title">Robotics & Intelligent Systems</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="cloud-infra" data-service="04">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">04 /</span>
               <h2 class="service-title">Cloud & AI Infrastructure</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="software" data-service="05">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">05 /</span>
               <h2 class="service-title">Software & Platform Engineering</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="embedded" data-service="06">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">06 /</span>
               <h2 class="service-title">Embedded AI & Hardware</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="automotive" data-service="07">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">07 /</span>
               <h2 class="service-title">Automotive & Network</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="automation" data-service="08">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">08 /</span>
               <h2 class="service-title">Automation & Control</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="ui-systems" data-service="09">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">09 /</span>
               <h2 class="service-title">Human-Machine Interfaces</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="fleet" data-service="10">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">10 /</span>
               <h2 class="service-title">Remote Intelligence</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="prototyping" data-service="11">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">11 /</span>
               <h2 class="service-title">Advanced Prototyping</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="custom-rnd" data-service="12">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">12 /</span>
               <h2 class="service-title">Specialized Solutions</h2>
             </div>
             <span class="service-plus-icon">+</span>
           </div>
 
           <div class="service-item fade-up" data-theme="algo-dev" data-service="13">
+            <div class="service-bg"></div>
+            <div class="service-overlay"></div>
             <div class="service-main-content">
-              <span class="service-num">13 /</span>
               <h2 class="service-title">Custom Algo Development</h2>
             </div>
             <span class="service-plus-icon">+</span>
@@ -504,14 +572,13 @@
       serviceItems.forEach((item) => {
         item.addEventListener('click', () => {
           const title = item.querySelector('.service-title').textContent;
-          const num = item.querySelector('.service-num').textContent.split(' ')[0]; // Get "01" from "01 /"
           const theme = item.getAttribute('data-theme');
           const serviceId = item.getAttribute('data-service');
 
           const items = serviceData[serviceId] || [];
           const itemsHTML = items.map(subItem => `<li>${subItem}</li>`).join('');
 
-          localStorage.setItem('selectedServiceTitle', `<span class="service-number">${num} /</span> ${title}`);
+          localStorage.setItem('selectedServiceTitle', title);
           localStorage.setItem('selectedServiceItems', itemsHTML);
           localStorage.setItem('selectedServiceTheme', theme);
 
@@ -525,18 +592,20 @@
         { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: "power3.out", delay: 0.5 }
       );
 
-      // Hero content parallax animation (upward movement on scroll)
-      gsap.to(".services-hero > *:not(.holographic-grid)", {
-        y: -150,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".services-hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
-      });
+      // Hero content parallax animation (upward movement on scroll) - Desktop Only
+      if (window.innerWidth > 768) {
+        gsap.to(".services-hero > *:not(.holographic-grid)", {
+          y: -150,
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".services-hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      }
 
       // Simple GSAP entrance animation for list items
       gsap.from(".service-item", {

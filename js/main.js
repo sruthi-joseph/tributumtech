@@ -33,6 +33,38 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.querySelector('.hero-bg-container')) {
     initHomeAnimations();
   }
+
+  // 4. Mobile Menu Toggle logic (Moved into scope of lenis)
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const header = document.querySelector('.glass-header');
+  
+  if (menuToggle && header) {
+    menuToggle.addEventListener('click', () => {
+      header.classList.toggle('nav-active');
+      
+      // Manage Lenis Scrolling
+      if (header.classList.contains('nav-active')) {
+        lenis.stop();
+        
+        // Staggered animation for menu items
+        gsap.fromTo(".main-nav li", 
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out", delay: 0.2 }
+        );
+      } else {
+        lenis.start();
+      }
+    });
+
+    // Close menu when a link is clicked
+    const navLinks = document.querySelectorAll('.main-nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        header.classList.remove('nav-active');
+        lenis.start();
+      });
+    });
+  }
 });
 
 function initGlobalAnimations() {
@@ -79,14 +111,6 @@ function initGlobalAnimations() {
       }
     );
   });
-
-  // Mobile Menu Toggle logic
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      alert("Mobile menu clicked!");
-    });
-  }
 }
 
 function initHomeAnimations() {

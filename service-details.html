@@ -55,33 +55,58 @@
       padding: 150px 0 80px;
       text-align: center;
       position: relative;
+      z-index: 10; /* Ensure visibility over BG */
     }
 
     .service-detail-title {
       font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-detail-title .service-number {
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      vertical-align: super;
-      margin-right: 0.5rem;
-      font-family: var(--font-body);
+      margin-bottom: 2rem;
     }
 
     .service-content-wrapper {
       padding: 2rem 0 100px;
+      position: relative;
+      z-index: 10; /* Ensure visibility over BG */
     }
 
     .detail-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-glass);
-      border-radius: 12px;
-      padding: 4rem;
-      max-width: 900px;
+      position: relative;
+      background: rgba(2, 9, 24, 0.85); /* Slightly more opaque for text contrast */
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      border-radius: 20px;
+      padding: 5rem; /* Increased padding */
+      max-width: 1100px; /* Increased width */
       margin: 0 auto;
-      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8), 
+                  0 0 40px rgba(0, 242, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .detail-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: var(--theme-bg-image);
+      background-size: 110%; /* Larger for movement */
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.15;
+      filter: var(--theme-bg-filter, grayscale(0.5));
+      pointer-events: none;
+      z-index: 0;
+      animation: slowFloat 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowFloat {
+      from { transform: scale(1) translate(0, 0); }
+      to { transform: scale(1.1) translate(2%, 2%); }
+    }
+
+    .detail-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .detail-card.theme-primary {
@@ -102,10 +127,17 @@
 
     .service-items-grid li {
       position: relative;
-      padding-left: 2rem;
-      color: var(--text-muted);
-      font-size: 1.1rem;
+      padding-left: 2.5rem;
+      color: #fff;
+      font-size: 1.3rem; /* Larger text */
+      font-weight: 500; /* Bolder text */
       line-height: 1.6;
+      transition: transform 0.3s ease;
+    }
+    
+    .service-items-grid li:hover {
+      color: #fff;
+      transform: translateX(5px);
     }
 
     .service-items-grid li::before {
@@ -133,8 +165,30 @@
       inset: 0;
       z-index: -2;
       overflow: hidden;
-      background: #020918;
+      background: #000; /* Pure black base */
       pointer-events: none;
+    }
+
+    #course-bg .bg-image-layer {
+      position: absolute;
+      inset: -5%; /* Prevent edges showing during float */
+      background-image: var(--theme-bg-image);
+      background-size: cover;
+      background-position: center;
+      opacity: 0; /* Animated via GSAP */
+      z-index: 1;
+      filter: var(--theme-bg-filter, saturate(1.1) brightness(1.1));
+      transform: scale(1.1); /* Animated via GSAP */
+    }
+
+    #course-bg .bg-overlay-details {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, 
+        rgba(2, 9, 24, 0.1) 0%, 
+        rgba(2, 9, 24, 0.4) 60%, 
+        rgba(2, 9, 24, 0.7) 100%);
+      z-index: 2;
     }
 
     /* Main radial glow */
@@ -143,6 +197,7 @@
       inset: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 40%, var(--theme-bg-glow-1), transparent 70%);
       animation: breathe 6s ease-in-out infinite;
+      z-index: 3;
     }
     #course-bg .bg-glow-corner {
       position: absolute;
@@ -150,6 +205,7 @@
       border-radius: 50%;
       background: radial-gradient(circle, var(--theme-bg-glow-2), transparent 70%);
       animation: drift 14s ease-in-out infinite alternate;
+      z-index: 2;
     }
     #course-bg .bg-glow-corner.tl { top: -200px; left: -200px; animation-delay: 0s; }
     #course-bg .bg-glow-corner.br { bottom: -200px; right: -200px; animation-delay: -7s; }
@@ -163,6 +219,7 @@
         linear-gradient(90deg, var(--theme-grid-line) 1px, transparent 1px);
       background-size: 60px 60px;
       animation: gridPulse 4s ease-in-out infinite;
+      z-index: 4;
     }
 
     /* Floating orbs */
@@ -171,6 +228,7 @@
       border-radius: 50%;
       background: radial-gradient(circle, var(--theme-orb-color), transparent 70%);
       animation: floatOrb var(--orb-dur, 12s) ease-in-out infinite alternate;
+      z-index: 3;
     }
     #course-bg .orb:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 15%; --orb-dur: 11s; }
     #course-bg .orb:nth-child(2) { width: 200px; height: 200px; top: 50%; left: 70%; --orb-dur: 15s; animation-delay: -4s; }
@@ -184,6 +242,7 @@
       border: 1px solid var(--theme-ring-color);
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
+      z-index: 2;
     }
     #course-bg .ring:nth-child(1) { width: 500px; height: 500px; animation: spinRing 25s linear infinite; }
     #course-bg .ring:nth-child(2) { width: 750px; height: 750px; animation: spinRing 40s linear infinite reverse; }
@@ -197,12 +256,14 @@
       background: linear-gradient(90deg, transparent, var(--theme-scan-color), transparent);
       animation: scanSweep 8s linear infinite;
       opacity: 0.6;
+      z-index: 5;
     }
 
     /* Data particles (CSS only) */
     #course-bg .particles {
       position: absolute;
       inset: 0;
+      z-index: 4;
     }
     #course-bg .particle {
       position: absolute;
@@ -223,6 +284,7 @@
       border-width: 0;
       opacity: 0.5;
       animation: bracketPulse 3s ease-in-out infinite;
+      z-index: 5;
     }
     #course-bg .corner-bracket.tl { top: 40px; left: 40px; border-top-width: 2px; border-left-width: 2px; }
     #course-bg .corner-bracket.tr { top: 40px; right: 40px; border-top-width: 2px; border-right-width: 2px; }
@@ -237,6 +299,7 @@
       background: linear-gradient(to bottom, transparent, var(--theme-streak-color), transparent);
       animation: streakFall var(--s-dur, 6s) linear infinite;
       opacity: 0;
+      z-index: 3;
     }
 
     /* ─── Animations ─── */
@@ -290,6 +353,8 @@
     /* ─── Theme Variable Maps ─── */
     /* ai-data */ body.theme-ai-data {
       --theme-accent: #00F2FF;
+      --theme-bg-image: url('./assets/service_01.png');
+      --theme-bg-filter: saturate(1.4) brightness(1.2);
       --theme-accent-glow: rgba(0, 242, 255, 0.6);
       --theme-bg-glow-1: rgba(0, 200, 255, 0.12);
       --theme-bg-glow-2: rgba(0, 242, 255, 0.08);
@@ -303,6 +368,8 @@
     }
     /* ml-vision */ body.theme-ml-vision {
       --theme-accent: #BF00FF;
+      --theme-bg-image: url('./assets/service_02.png');
+      --theme-bg-filter: hue-rotate(10deg) saturate(1.3) brightness(1.1);
       --theme-accent-glow: rgba(191, 0, 255, 0.6);
       --theme-bg-glow-1: rgba(140, 0, 255, 0.14);
       --theme-bg-glow-2: rgba(191, 0, 255, 0.09);
@@ -316,6 +383,8 @@
     }
     /* robotics */ body.theme-robotics {
       --theme-accent: #FFB300;
+      --theme-bg-image: url('./assets/service_03.png');
+      --theme-bg-filter: sepia(0.1) saturate(1.5) brightness(1.2);
       --theme-accent-glow: rgba(255, 179, 0, 0.6);
       --theme-bg-glow-1: rgba(255, 150, 0, 0.12);
       --theme-bg-glow-2: rgba(255, 179, 0, 0.08);
@@ -329,6 +398,8 @@
     }
     /* cloud-infra */ body.theme-cloud-infra {
       --theme-accent: #00FFC2;
+      --theme-bg-image: url('./assets/hero_ai_core_4k.png');
+      --theme-bg-filter: brightness(1.1) contrast(1.1);
       --theme-accent-glow: rgba(0, 255, 194, 0.6);
       --theme-bg-glow-1: rgba(0, 220, 170, 0.12);
       --theme-bg-glow-2: rgba(0, 255, 194, 0.08);
@@ -342,6 +413,8 @@
     }
     /* software */ body.theme-software {
       --theme-accent: #0077FF;
+      --theme-bg-image: url('./assets/service_05.png');
+      --theme-bg-filter: saturate(1.5) brightness(1.1);
       --theme-accent-glow: rgba(0, 119, 255, 0.6);
       --theme-bg-glow-1: rgba(0, 100, 255, 0.13);
       --theme-bg-glow-2: rgba(0, 119, 255, 0.09);
@@ -355,6 +428,8 @@
     }
     /* embedded */ body.theme-embedded {
       --theme-accent: #FF0055;
+      --theme-bg-image: url('./assets/service_06.png');
+      --theme-bg-filter: saturate(1.4) brightness(1.1);
       --theme-accent-glow: rgba(255, 0, 85, 0.6);
       --theme-bg-glow-1: rgba(255, 0, 60, 0.12);
       --theme-bg-glow-2: rgba(255, 0, 85, 0.08);
@@ -368,6 +443,8 @@
     }
     /* automotive */ body.theme-automotive {
       --theme-accent: #D0D4FF;
+      --theme-bg-image: url('./assets/hero-main.png');
+      --theme-bg-filter: saturate(1.1) brightness(1.1);
       --theme-accent-glow: rgba(200, 210, 255, 0.6);
       --theme-bg-glow-1: rgba(180, 190, 255, 0.10);
       --theme-bg-glow-2: rgba(200, 210, 255, 0.07);
@@ -381,6 +458,8 @@
     }
     /* automation */ body.theme-automation {
       --theme-accent: #A7FF00;
+      --theme-bg-image: url('./assets/ai_bulb_hero.png');
+      --theme-bg-filter: hue-rotate(15deg) saturate(1.3) brightness(1.1);
       --theme-accent-glow: rgba(167, 255, 0, 0.6);
       --theme-bg-glow-1: rgba(140, 240, 0, 0.12);
       --theme-bg-glow-2: rgba(167, 255, 0, 0.08);
@@ -394,6 +473,8 @@
     }
     /* ui-systems */ body.theme-ui-systems {
       --theme-accent: #FF00B3;
+      --theme-bg-image: url('./assets/service_05.png');
+      --theme-bg-filter: hue-rotate(90deg) saturate(1.5) brightness(1.1);
       --theme-accent-glow: rgba(255, 0, 179, 0.6);
       --theme-bg-glow-1: rgba(255, 0, 150, 0.13);
       --theme-bg-glow-2: rgba(255, 0, 179, 0.09);
@@ -407,6 +488,8 @@
     }
     /* fleet */ body.theme-fleet {
       --theme-accent: #FFD700;
+      --theme-bg-image: url('./assets/globe-rotator.png');
+      --theme-bg-filter: brightness(1.1) saturate(1.1);
       --theme-accent-glow: rgba(255, 215, 0, 0.6);
       --theme-bg-glow-1: rgba(255, 200, 0, 0.12);
       --theme-bg-glow-2: rgba(255, 215, 0, 0.08);
@@ -420,6 +503,8 @@
     }
     /* prototyping */ body.theme-prototyping {
       --theme-accent: #FF00FF;
+      --theme-bg-image: url('./assets/service_03.png');
+      --theme-bg-filter: hue-rotate(-90deg) brightness(1.2) saturate(1.2);
       --theme-accent-glow: rgba(255, 0, 255, 0.6);
       --theme-bg-glow-1: rgba(220, 0, 255, 0.13);
       --theme-bg-glow-2: rgba(255, 0, 255, 0.09);
@@ -433,6 +518,8 @@
     }
     /* custom-rnd */ body.theme-custom-rnd {
       --theme-accent: #00BFFF;
+      --theme-bg-image: url('./assets/vibrant_hero_4k.png');
+      --theme-bg-filter: contrast(1.2) saturate(1.5) brightness(1.1);
       --theme-accent-glow: rgba(0, 191, 255, 0.6);
       --theme-bg-glow-1: rgba(0, 170, 255, 0.12);
       --theme-bg-glow-2: rgba(0, 191, 255, 0.08);
@@ -446,6 +533,8 @@
     }
     /* algo-dev */ body.theme-algo-dev {
       --theme-accent: #7B00FF;
+      --theme-bg-image: url('./assets/hero_ai_core.png');
+      --theme-bg-filter: hue-rotate(240deg) brightness(1.2) saturate(1.3);
       --theme-accent-glow: rgba(123, 0, 255, 0.6);
       --theme-bg-glow-1: rgba(100, 0, 255, 0.14);
       --theme-bg-glow-2: rgba(123, 0, 255, 0.10);
@@ -471,6 +560,69 @@
     }
     .btn-primary .btn-glow { background: var(--theme-accent); }
     .footer-social h4 { color: var(--theme-accent) !important; text-shadow: 0 0 10px var(--theme-accent-glow); }
+
+    /* ─── Mobile Optimization ─── */
+    @media (max-width: 768px) {
+      .service-detail-hero {
+        padding: 110px 0 40px;
+      }
+
+      .service-detail-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .detail-card {
+        padding: 2.5rem 1.5rem;
+        border-radius: 12px;
+      }
+
+      .service-items-grid {
+        grid-template-columns: 1fr; /* Force 1 column on mobile */
+        gap: 1.5rem;
+      }
+
+      .service-items-grid li {
+        font-size: 1.1rem;
+        padding-left: 2rem;
+      }
+
+      .service-items-grid li::before {
+        font-size: 1.2rem;
+      }
+
+      .back-btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 3rem;
+      }
+
+      .back-btn-container a {
+        width: 100%;
+        margin: 0 !important; /* Reset side margins */
+      }
+
+      /* Background Optimization */
+      #course-bg .ring,
+      #course-bg .corner-bracket,
+      #course-bg .streak {
+        display: none !important; /* Hide complex elements on mobile */
+      }
+
+      #course-bg .bg-image-layer {
+        opacity: 0.9 !important; /* Restored to desktop-level impact */
+        background-position: center;
+      }
+
+      #course-bg .bg-glow-center {
+        opacity: 0.3; /* Reduce glare */
+      }
+
+      #course-bg .orb {
+        transform: scale(0.7); /* Smaller orbs */
+      }
+    }
   </style>
 </head>
 
@@ -484,7 +636,9 @@
         </div>
       </a>
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
-        <span class="hamburger"></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       <nav class="main-nav">
         <ul>
@@ -499,6 +653,8 @@
 
   <!-- Animated Course Background -->
   <div id="course-bg">
+    <div class="bg-image-layer"></div>
+    <div class="bg-overlay-details"></div>
     <div class="bg-glow-center"></div>
     <div class="bg-glow-corner tl"></div>
     <div class="bg-glow-corner br"></div>
@@ -638,6 +794,8 @@
       itemsEl.innerHTML = itemsHTML;
 
       document.body.classList.add('theme-' + theme);
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
 
       // Update page title
       const tempDiv = document.createElement('div');
@@ -646,8 +804,9 @@
 
       // ─── CSS-Animated Background: Spawn particles and streaks ───
       const particleContainer = document.getElementById('bg-particles');
-      const NUM_PARTICLES = 35;
-      const NUM_STREAKS = 12;
+      const isMobile = window.innerWidth <= 768;
+      const NUM_PARTICLES = isMobile ? 12 : 35; // Reduced for performance
+      const NUM_STREAKS = isMobile ? 4 : 12; // Reduced for performance
 
       // Spawn floating particles rising from bottom
       for (let i = 0; i < NUM_PARTICLES; i++) {
@@ -688,6 +847,35 @@
         `;
         bgEl.appendChild(s);
       }
+
+      // Entrance animation for content and background
+      gsap.to(".bg-image-layer", {
+        opacity: 0.9,
+        scale: 1,
+        duration: 3.5,
+        ease: "power2.out"
+      });
+
+      // Background floating movement
+      gsap.to(".bg-image-layer", {
+        x: "2%",
+        y: "2%",
+        duration: 20,
+        repeat: -1,
+        yoyo: true,
+        ease: "none"
+      });
+
+      gsap.fromTo(".detail-card", 
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.5, delay: 0.2, ease: "power4.out" }
+      );
+
+      // Staggered list items
+      gsap.fromTo(".service-items-grid li",
+        { x: -20, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.8, stagger: 0.1, delay: 1, ease: "back.out(1.7)" }
+      );
     });
   </script>
 </body>
