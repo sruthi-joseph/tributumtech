@@ -96,14 +96,29 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 700; /* Increased to Bold */
   line-height: 1.1;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main); /* Brighter than muted */
+  max-width: 600px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Added for readability against busy backgrounds */
+}
 .text-glow {
   text-shadow: 0 0 20px var(--accent-primary-glow), 0 0 40px var(--accent-primary-glow);
   color: #fff;
+  filter: brightness(1.2);
 }
 
 .text-accent-pri {
@@ -137,20 +152,20 @@ h6 {
    ========================================================================== */
 .badge {
   display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background: rgba(0, 240, 255, 0.05);
-  border: 1px solid var(--border-glass);
+  padding: 0.6rem 1.5rem; /* Slightly larger */
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--accent-primary); /* More prominent border */
   border-radius: 100px;
   font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 0.8rem; /* Slightly larger */
+  font-weight: 700; /* Bolder */
+  letter-spacing: 0.2em;
   color: var(--accent-primary);
   text-transform: uppercase;
   margin-bottom: 2rem;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
 .hero-title {
@@ -347,8 +362,8 @@ h6 {
   padding: 0.875rem 2rem;
   font-family: var(--font-heading);
   font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 700; /* Bolder button text */
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   border-radius: 4px;
   position: relative;
@@ -719,6 +734,62 @@ h6 {
     gap: 1rem;
     align-items: flex-start;
   }
+
+  /* Reduce holographic light effects for better mobile readability */
+  .text-glow {
+    text-shadow: 0 0 10px var(--accent-primary-glow);
+    filter: none;
+  }
+
+  .text-accent-pri, 
+  .text-accent-sec {
+    text-shadow: none;
+  }
+
+  .badge {
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+    background: rgba(0, 240, 255, 0.15);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+  }
+
+  .hero-hud-container {
+    opacity: 0.3;
+  }
+
+  .hero-bg-overlay {
+    background: linear-gradient(to bottom, transparent, var(--bg-obsidian) 80%);
+  }
+
+  .hero-bg-img,
+  .hero-globe-rotator {
+    filter: brightness(0.6) !important; /* Dim background images for contrast */
+  }
+
+  .glass-card,
+  .glass-card:hover {
+    box-shadow: none !important; /* Stop glows on mobile cards */
+    border-color: rgba(0, 240, 255, 0.4) !important;
+  }
+
+  .section-desc {
+    text-shadow: none;
+    color: #fff; /* Maximum contrast on mobile */
+    font-weight: 500;
+  }
+
+  #about-preview {
+    background: rgba(2, 6, 18, 0.4); /* Subtle darkening for text area */
+    border-radius: 12px;
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem; /* Optimized for mobile screens */
+  }
 }
 
 
@@ -746,6 +817,7 @@ h6 {
   border-radius: 8px;
   box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
   border: 1px solid var(--border-glass);
+  overflow: hidden; /* Added to clip parallax images */
 }
 
 .preview-grid {

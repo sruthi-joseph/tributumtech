@@ -93,14 +93,15 @@ function initGlobalAnimations() {
   }
 
   // Global Scroll Reveal Animations for all pages
-  const revealElements = document.querySelectorAll('.reveal');
+  const revealElements = document.querySelectorAll('.reveal, .reveal-on-scroll');
   revealElements.forEach(el => {
     gsap.fromTo(el,
-      { y: 50, opacity: 0, scale: 0.98 },
+      { y: 50, opacity: 0, scale: 0.98, filter: "blur(5px)" },
       {
         y: 0,
         opacity: 1,
         scale: 1,
+        filter: "blur(0px)",
         duration: 1,
         ease: "power3.out",
         scrollTrigger: {
@@ -149,51 +150,34 @@ function initHomeAnimations() {
       ease: "power1.in"
     }, 0);
 
-  // 2. Dash Card HD Reveals (Follow Through & Overlapping Action)
-  gsap.fromTo(".dash-card",
-    { y: 80, opacity: 0, scale: 0.95 },
-    {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      duration: 1,
-      stagger: 0.2, // Stagger reveals
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".dashboard-intro",
-        start: "top 80%", // Anticipation: 20% visible trigger
-        toggleActions: "play reverse play reverse"
-      }
+  // 2. System Core Network High-Visibility Reveal
+  const tlNetwork = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#about-preview",
+      start: "top 80%",
+      toggleActions: "play none none reverse"
     }
+  });
+
+  tlNetwork.fromTo(".network-reveal-image",
+    { x: -100, opacity: 0, scale: 0.8, filter: "blur(10px)" },
+    { x: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
+  )
+  .fromTo(".network-reveal-content > *",
+    { y: 50, opacity: 0, filter: "blur(5px)" },
+    { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
+    "-=0.8" // Overlap with image animation
   );
 
-  // 3. Dashboard Intro Number Counting
-  const numbers = document.querySelectorAll('.data-value');
-  numbers.forEach(num => {
-    const targetValue = parseFloat(num.getAttribute('data-value'));
-    if (!isNaN(targetValue)) {
-      ScrollTrigger.create({
-        trigger: ".dashboard-intro",
-        start: "top 80%",
-        onEnter: () => {
-          gsap.fromTo(num,
-            { innerHTML: 0 },
-            {
-              innerHTML: targetValue,
-              duration: 2.5, // Extending for smooth slow-out
-              ease: "power4.out",
-              snap: { innerHTML: 0.1 },
-              onUpdate: function () {
-                num.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
-                if (targetValue > 1000) {
-                  num.innerHTML = Math.floor(Number(this.targets()[0].innerHTML)).toLocaleString();
-                }
-              }
-            }
-          );
-        },
-        once: true
-      });
+  // Parallax effect for the image on scroll
+  gsap.to(".network-reveal-image img", {
+    y: -50,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#about-preview",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true
     }
   });
 }
