@@ -150,34 +150,73 @@ function initHomeAnimations() {
       ease: "power1.in"
     }, 0);
 
-  // 2. System Core Network High-Visibility Reveal
-  const tlNetwork = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#about-preview",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    }
+  // Responsive Animation Setup
+  let mm = gsap.matchMedia();
+
+  mm.add("(max-width: 1024px)", () => {
+    // Mobile & Tablet: strictly vertical movements, no horizontal shifts
+    const tlNetwork = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#about-preview",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    tlNetwork.fromTo(".network-reveal-image",
+      { y: 50, opacity: 0, scale: 0.8, filter: "blur(10px)" },
+      { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
+    )
+    .fromTo(".network-reveal-content > *",
+      { y: 30, opacity: 0, filter: "blur(5px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
+      "-=0.8"
+    );
+
+    // Parallax on mobile (subtle)
+    gsap.to(".network-reveal-image img", {
+      y: -30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#about-preview",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
   });
 
-  tlNetwork.fromTo(".network-reveal-image",
-    { x: -100, opacity: 0, scale: 0.8, filter: "blur(10px)" },
-    { x: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
-  )
-  .fromTo(".network-reveal-content > *",
-    { y: 50, opacity: 0, filter: "blur(5px)" },
-    { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
-    "-=0.8" // Overlap with image animation
-  );
+  mm.add("(min-width: 1025px)", () => {
+    // Desktop: Horizontal reveal logic
+    const tlNetwork = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#about-preview",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    });
 
-  // Parallax effect for the image on scroll
-  gsap.to(".network-reveal-image img", {
-    y: -50,
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#about-preview",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true
-    }
+    tlNetwork.fromTo(".network-reveal-image",
+      { x: -100, opacity: 0, scale: 0.8, filter: "blur(10px)" },
+      { x: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
+    )
+    .fromTo(".network-reveal-content > *",
+      { y: 50, opacity: 0, filter: "blur(5px)" },
+      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
+      "-=0.8"
+    );
+
+    gsap.to(".network-reveal-image img", {
+      y: -80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#about-preview",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
   });
 }
+
+

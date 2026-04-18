@@ -70,228 +70,6 @@
 
   <link rel="stylesheet" href="./styles/global.css?v=1.1">
   <link rel="stylesheet" href="./styles/animations.css">
-  <style>
-    /* Services List Accordion Styles */
-    .services-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 4rem 0;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-item {
-      position: relative;
-      background: rgba(10, 20, 40, 0.4);
-      border-left: 4px solid transparent;
-      padding: 3rem 4rem;
-      cursor: pointer;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      overflow: hidden;
-      border-radius: 8px;
-      border-bottom: 1px solid rgba(0, 242, 255, 0.1);
-      margin-bottom: 0.5rem;
-    }
-
-    /* Background Image Container */
-    .service-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; /* Above parent background */
-      background-size: cover;
-      background-position: center;
-      transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
-      opacity: 0.5; /* High base visibility */
-      filter: saturate(1.1);
-    }
-
-    /* Dark Overlay for Readability */
-    .service-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, 
-        rgba(2, 9, 24, 0.9) 0%, 
-        rgba(2, 9, 24, 0.5) 50%, 
-        rgba(2, 9, 24, 0.1) 100%);
-      z-index: 2; /* Over background image */
-      transition: all 0.6s ease;
-    }
-
-    .service-item:hover {
-      background: rgba(10, 20, 60, 0.45);
-      border-left-color: var(--accent-primary);
-      transform: translateX(25px) scale(1.01);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    .service-item:hover .service-bg {
-      transform: scale(1.1);
-      opacity: 0.9; /* Near full visibility on hover */
-      filter: saturate(1.4) contrast(1.1);
-    }
-
-    .service-item:hover .service-overlay {
-      background: linear-gradient(90deg, 
-        rgba(5, 11, 26, 0.8) 0%, 
-        rgba(5, 11, 26, 0.4) 50%, 
-        rgba(5, 11, 26, 0.1) 100%);
-    }
-
-    .service-main-content {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      position: relative;
-      z-index: 3; /* Top layer */
-    }
-
-    .service-title {
-      font-size: 2.8rem;
-      font-weight: 500;
-      color: #fff;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-      transition: all 0.4s ease;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-
-    .service-item:hover .service-title {
-      color: var(--accent-primary);
-      transform: translateX(10px);
-      text-shadow: 0 0 20px rgba(0, 242, 255, 0.4), 2px 2px 10px rgba(0, 0, 0, 0.8);
-    }
-
-    .service-plus-icon {
-      font-size: 2rem;
-      color: var(--accent-primary);
-      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
-      position: relative;
-      z-index: 2;
-      opacity: 0.6;
-    }
-
-    .service-item:hover .service-plus-icon {
-      transform: rotate(90deg) scale(1.2);
-      opacity: 1;
-    }
-
-    /* Mapping backgrounds */
-    .service-item[data-service="01"] .service-bg { background-image: url('./assets/service_01.png'); }
-    .service-item[data-service="02"] .service-bg { background-image: url('./assets/service_02.png'); }
-    .service-item[data-service="03"] .service-bg { background-image: url('./assets/service_03.png'); }
-    .service-item[data-service="04"] .service-bg { background-image: url('./assets/hero_ai_core_4k.png'); }
-    .service-item[data-service="05"] .service-bg { background-image: url('./assets/service_05.png'); }
-    .service-item[data-service="06"] .service-bg { background-image: url('./assets/service_06.png'); }
-    .service-item[data-service="07"] .service-bg { background-image: url('./assets/hero-main.png'); }
-    .service-item[data-service="08"] .service-bg { background-image: url('./assets/ai_bulb_hero.png'); }
-    .service-item[data-service="09"] .service-bg { background-image: url('./assets/service_05.png'); filter: hue-rotate(45deg); }
-    .service-item[data-service="10"] .service-bg { background-image: url('./assets/globe-rotator.png'); }
-    .service-item[data-service="11"] .service-bg { background-image: url('./assets/service_03.png'); filter: hue-rotate(-45deg); }
-    .service-item[data-service="12"] .service-bg { background-image: url('./assets/vibrant_hero_4k.png'); }
-    .service-item[data-service="13"] .service-bg { background-image: url('./assets/service_01.png'); filter: hue-rotate(90deg); }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .services-hero {
-        padding-top: 110px;
-        padding-bottom: 3rem;
-        min-height: auto;
-      }
-
-      .services-list {
-        padding: 2rem 0;
-        gap: 0.75rem;
-      }
-
-      .service-item {
-        padding: 2.5rem 1.5rem;
-        transform: none !important; /* Disable hover translation */
-      }
-
-      .service-item:hover {
-        transform: none !important;
-      }
-
-      .service-bg {
-        opacity: 0.75; /* Higher visibility on mobile by default */
-        filter: saturate(1.2) contrast(1.1) brightness(0.8);
-      }
-
-      .service-title {
-        font-size: 1.8rem;
-        line-height: 1.2;
-      }
-
-      .service-main-content {
-        gap: 1.5rem;
-      }
-
-      .service-plus-icon {
-        font-size: 1.5rem;
-        opacity: 0.8;
-      }
-    }
-
-    .services-wrapper {
-      padding-bottom: 6rem;
-    }
-
-    .services-hero {
-      padding: 6rem 0 2rem;
-      /* Reduced padding */
-      position: relative;
-      min-height: 30vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 5;
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      color: #fff;
-      position: relative;
-      z-index: 10;
-      opacity: 1 !important;
-      /* Force visibility for debugging, GSAP will still animate */
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      line-height: 1.6;
-      position: relative;
-      z-index: 10;
-      opacity: 1 !important;
-      margin: 0 auto;
-    }
-
-    #data-stream-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.4;
-      /* Increased from 0.2 */
-      pointer-events: none;
-    }
-  </style>
 </head>
 
 <body class="loading">
@@ -304,9 +82,9 @@
 
   <header class="glass-header">
     <div class="container nav-container">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.5rem;">
         <div class="logo-glow-container">
-          <img src="./logo.png" class="brand-logo" alt="Tributum Tech">
+          <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;">
         </div>
       </a>
       <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -342,7 +120,7 @@
 
       <section class="container services-wrapper">
         <div class="services-list">
-          <div class="service-item fade-up" data-theme="ai-data" data-service="01">
+          <div class="service-item" data-theme="ai-data" data-service="01">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -351,7 +129,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="ml-vision" data-service="02">
+          <div class="service-item" data-theme="ml-vision" data-service="02">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -360,7 +138,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="robotics" data-service="03">
+          <div class="service-item" data-theme="robotics" data-service="03">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -369,7 +147,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="cloud-infra" data-service="04">
+          <div class="service-item" data-theme="cloud-infra" data-service="04">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -378,7 +156,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="software" data-service="05">
+          <div class="service-item" data-theme="software" data-service="05">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -387,7 +165,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="embedded" data-service="06">
+          <div class="service-item" data-theme="embedded" data-service="06">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -396,7 +174,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="automotive" data-service="07">
+          <div class="service-item" data-theme="automotive" data-service="07">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -405,7 +183,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="automation" data-service="08">
+          <div class="service-item" data-theme="automation" data-service="08">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -414,7 +192,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="ui-systems" data-service="09">
+          <div class="service-item" data-theme="ui-systems" data-service="09">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -423,7 +201,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="fleet" data-service="10">
+          <div class="service-item" data-theme="fleet" data-service="10">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -432,7 +210,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="prototyping" data-service="11">
+          <div class="service-item" data-theme="prototyping" data-service="11">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -441,7 +219,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="custom-rnd" data-service="12">
+          <div class="service-item" data-theme="custom-rnd" data-service="12">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -450,7 +228,7 @@
             <span class="service-plus-icon">+</span>
           </div>
 
-          <div class="service-item fade-up" data-theme="algo-dev" data-service="13">
+          <div class="service-item" data-theme="algo-dev" data-service="13">
             <div class="service-bg"></div>
             <div class="service-overlay"></div>
             <div class="service-main-content">
@@ -465,10 +243,10 @@
       <footer class="site-footer">
         <div class="container footer-grid">
           <div class="footer-brand">
-            <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.8rem;">
+            <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.5rem;">
               <div class="logo-glow-container">
-                <img src="./logo.png" class="brand-logo" alt="Tributum Tech">
-            </div>
+                <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;">
+              </div>
             </a>
             <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>
           </div>
@@ -537,90 +315,7 @@
 
   <script src="./js/main.js"></script>
   <script src="./js/services-stream.js"></script>
-  <script>
-    // Service List Logic
-    document.addEventListener("DOMContentLoaded", () => {
-      const serviceItems = document.querySelectorAll('.service-item');
-
-      const serviceData = {
-        "01": ["Data Annotation & Labeling", "Cloud-based Platforms", "Data Collection", "Data Digitalisation", "Data Cleaning", "Multilingual Transcription", "Translation & Localization", "Dataset Creation", "GIS Annotation"],
-        "02": ["Computer Vision", "NLP", "Conversational AI", "Speech AI", "Predictive Analytics", "Generative AI", "Edge AI"],
-        "03": ["AI-powered Robotics", "Humanoid Robot Development", "Motion Capture", "Robot Training Data", "Autonomous Navigation", "Sensor Fusion", "Industrial Robotics", "Human-Robot Interaction", "Simulation & Testing"],
-        "04": ["Cloud Deployment", "Data Pipelines", "MLOps", "Real-time Streaming", "API Development"],
-        "05": ["Web & SaaS Platforms", "Mobile & Desktop apps", "AI Dashboards", "Automation Tools"],
-        "06": ["Embedded Systems", "IoT Integration", "Real-time Control"],
-        "07": ["CAN / LIN / Ethernet", "Diagnostics", "Loggers", "EOL Testing"],
-        "08": ["PID Controllers", "Motor Control", "Servo Systems", "Energy Monitoring", "Wireless Automation"],
-        "09": ["Tablet Control Apps", "Touch Displays", "UI Systems", "Figma to Production"],
-        "10": ["Remote Diagnostics", "Fleet Monitoring", "Predictive Maintenance"],
-        "11": ["Rapid Prototyping", "Simulation", "Custom Demos"],
-        "12": ["Document AI", "Video Intelligence", "RGB LED Systems", "Custom R&D"],
-        "13": [
-          "Design and development of tailored algorithms for specific business and AI use cases",
-          "Optimization algorithms for performance, efficiency, and scalability",
-          "Computer Vision and NLP model customization for domain-specific applications",
-          "Motion and behavior modeling algorithms for robotics and humanoid systems",
-          "Path planning and decision-making algorithms for autonomous systems",
-          "Data processing and feature engineering algorithms",
-          "Real-time algorithm development for edge and embedded systems",
-          "AI model fine-tuning and custom training pipelines",
-          "Simulation-based algorithm testing and validation",
-          "Algorithm integration with hardware, sensors, and cloud systems"
-        ]
-      };
-
-      serviceItems.forEach((item) => {
-        item.addEventListener('click', () => {
-          const title = item.querySelector('.service-title').textContent;
-          const theme = item.getAttribute('data-theme');
-          const serviceId = item.getAttribute('data-service');
-
-          const items = serviceData[serviceId] || [];
-          const itemsHTML = items.map(subItem => `<li>${subItem}</li>`).join('');
-
-          localStorage.setItem('selectedServiceTitle', title);
-          localStorage.setItem('selectedServiceItems', itemsHTML);
-          localStorage.setItem('selectedServiceTheme', theme);
-
-          window.location.href = 'service-details.html';
-        });
-      });
-
-      // Hero entrance animation
-      gsap.fromTo(".services-hero .fade-up",
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: "power3.out", delay: 0.5 }
-      );
-
-      // Hero content parallax animation (upward movement on scroll) - Desktop Only
-      if (window.innerWidth > 768) {
-        gsap.to(".services-hero > *:not(.holographic-grid)", {
-          y: -150,
-          opacity: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".services-hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-      }
-
-      // Simple GSAP entrance animation for list items
-      gsap.from(".service-item", {
-        x: -50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".services-list",
-          start: "top 80%"
-        }
-      });
-    });
-  </script>
+  <script src="./js/services-data.js"></script>
 </body>
 
 </html>
