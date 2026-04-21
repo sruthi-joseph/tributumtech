@@ -52,15 +52,18 @@
   <link rel="stylesheet" href="./styles/animations.css">
   <style>
     .service-detail-hero {
-      padding: 80px 0 20px; /* Compacted from 150px 0 80px */
+      padding: 140px 0 20px; /* Increased top padding to space out from navbar */
       text-align: center;
       position: relative;
       z-index: 10; /* Ensure visibility over BG */
     }
 
     .service-detail-title {
-      font-size: 3rem;
+      font-size: 3.5rem;
+      font-weight: 800;
       margin-bottom: 2rem;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 0.8);
+      letter-spacing: -0.02em;
     }
 
     .service-content-wrapper {
@@ -71,32 +74,20 @@
 
     .detail-card {
       position: relative;
-      background: rgba(2, 9, 24, 0.85); /* Slightly more opaque for text contrast */
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(0, 242, 255, 0.25);
-      border-radius: 20px;
-      padding: 3rem 2rem; /* Compacted from 5rem */
-      max-width: 1100px; /* Increased width */
+      background: transparent; /* Fully transparent box */
+      backdrop-filter: none; /* Remove blur to see full background */
+      -webkit-backdrop-filter: none;
+      border: none !important; /* Remove borders */
+      border-radius: 0;
+      padding: 2rem 0;
+      max-width: 1200px;
       margin: 0 auto;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.8), 
-                  0 0 40px rgba(0, 242, 255, 0.1);
-      overflow: hidden;
+      box-shadow: none !important;
+      overflow: visible;
     }
 
     .detail-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: var(--theme-bg-image);
-      background-size: 110%; /* Larger for movement */
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.15;
-      filter: var(--theme-bg-filter, grayscale(0.5));
-      pointer-events: none;
-      z-index: 0;
-      animation: slowFloat 20s ease-in-out infinite alternate;
+      display: none; /* Moved to the full page background */
     }
 
     @keyframes slowFloat {
@@ -129,9 +120,10 @@
       position: relative;
       padding-left: 2.5rem;
       color: #fff;
-      font-size: 1.3rem; /* Larger text */
-      font-weight: 500; /* Bolder text */
+      font-size: 1.4rem; /* Larger text */
+      font-weight: 700; /* Bolder text */
       line-height: 1.6;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, 1), 0 0 8px rgba(0, 0, 0, 0.8); /* Strong shadow for visibility against BG */
       transition: transform 0.3s ease;
     }
     
@@ -163,31 +155,33 @@
     #course-bg {
       position: fixed;
       inset: 0;
-      z-index: -2;
+      z-index: 0; /* Changed from -2 so it renders ABOVE the body background */
       overflow: hidden;
       background: #000; /* Pure black base */
       pointer-events: none;
     }
+    
+    #smooth-wrapper {
+      position: relative;
+      z-index: 10; /* Ensure content is above the background */
+    }
 
     #course-bg .bg-image-layer {
       position: absolute;
-      inset: -5%; /* Prevent edges showing during float */
+      inset: -5%;
       background-image: var(--theme-bg-image);
       background-size: cover;
       background-position: center;
-      opacity: 0; /* Animated via GSAP */
+      opacity: 0.3; /* Base visibility before GSAP fade-in */
       z-index: 1;
-      filter: var(--theme-bg-filter, saturate(1.1) brightness(1.1));
-      transform: scale(1.1); /* Animated via GSAP */
+      filter: var(--theme-bg-filter, saturate(1.2) brightness(1.1));
+      transform: scale(1.1);
     }
 
     #course-bg .bg-overlay-details {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, 
-        rgba(2, 9, 24, 0.1) 0%, 
-        rgba(2, 9, 24, 0.4) 60%, 
-        rgba(2, 9, 24, 0.7) 100%);
+      background: rgba(4, 10, 20, 0.75); /* Deep dark overlay for high text contrast */
       z-index: 2;
     }
 
@@ -473,7 +467,7 @@
     }
     /* ui-systems */ body.theme-ui-systems {
       --theme-accent: #FF00B3;
-      --theme-bg-image: url('./assets/service_05.png');
+      --theme-bg-image: url('./assets/course_ui_systems.png');
       --theme-bg-filter: hue-rotate(90deg) saturate(1.5) brightness(1.1);
       --theme-accent-glow: rgba(255, 0, 179, 0.6);
       --theme-bg-glow-1: rgba(255, 0, 150, 0.13);
@@ -488,7 +482,7 @@
     }
     /* fleet */ body.theme-fleet {
       --theme-accent: #FFD700;
-      --theme-bg-image: url('./assets/globe-rotator.png');
+      --theme-bg-image: url('./assets/course_fleet.png');
       --theme-bg-filter: brightness(1.1) saturate(1.1);
       --theme-accent-glow: rgba(255, 215, 0, 0.6);
       --theme-bg-glow-1: rgba(255, 200, 0, 0.12);
@@ -503,7 +497,7 @@
     }
     /* prototyping */ body.theme-prototyping {
       --theme-accent: #FF00FF;
-      --theme-bg-image: url('./assets/service_03.png');
+      --theme-bg-image: url('./assets/course_prototyping.png');
       --theme-bg-filter: hue-rotate(-90deg) brightness(1.2) saturate(1.2);
       --theme-accent-glow: rgba(255, 0, 255, 0.6);
       --theme-bg-glow-1: rgba(220, 0, 255, 0.13);
@@ -518,7 +512,7 @@
     }
     /* custom-rnd */ body.theme-custom-rnd {
       --theme-accent: #00BFFF;
-      --theme-bg-image: url('./assets/vibrant_hero_4k.png');
+      --theme-bg-image: url('./assets/course_custom_rnd.png');
       --theme-bg-filter: contrast(1.2) saturate(1.5) brightness(1.1);
       --theme-accent-glow: rgba(0, 191, 255, 0.6);
       --theme-bg-glow-1: rgba(0, 170, 255, 0.12);
@@ -545,6 +539,22 @@
       --theme-particle-color: #7B00FF;
       --theme-bracket-color: #7B00FF;
       --theme-streak-color: rgba(123, 0, 255, 0.7);
+    }
+
+    /* Enforce Unified Cyan Theme / Remove 'Multiple Colours' */
+    body[class*="theme-"] {
+      --theme-accent: #00F0FF !important;
+      --theme-accent-glow: rgba(0, 240, 255, 0.6) !important;
+      --theme-bg-glow-1: rgba(0, 240, 255, 0.1) !important;
+      --theme-bg-glow-2: rgba(0, 240, 255, 0.05) !important;
+      --theme-grid-line: rgba(0, 240, 255, 0.05) !important;
+      --theme-orb-color: rgba(0, 240, 255, 0.15) !important;
+      --theme-ring-color: rgba(0, 240, 255, 0.1) !important;
+      --theme-scan-color: rgba(0, 240, 255, 0.9) !important;
+      --theme-particle-color: #00F0FF !important;
+      --theme-bracket-color: #00F0FF !important;
+      --theme-streak-color: rgba(0, 240, 255, 0.5) !important;
+      --theme-bg-filter: grayscale(0.2) brightness(1.2) !important; /* Neutralize image colors */
     }
 
     /* Override dynamic variables */

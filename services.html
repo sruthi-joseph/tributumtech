@@ -103,9 +103,22 @@
     </div>
   </header>
 
-  <canvas id="data-stream-canvas"></canvas>
+  <!-- Enhanced Animated Background System for Services Menu -->
+  <div id="service-page-bg" style="position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;">
+    <canvas id="data-stream-canvas" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 2; opacity: 0.5;"></canvas>
+    
+    <!-- Ambient floating animations -->
+    <div class="bg-glow-corner tl" style="position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 240, 255, 0.08), transparent 70%); animation: drift 15s ease-in-out infinite alternate; z-index: 1; top: -300px; left: -300px;"></div>
+    <div class="bg-glow-corner br" style="position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(0, 119, 255, 0.08), transparent 70%); animation: drift 18s ease-in-out infinite alternate; z-index: 1; bottom: -300px; right: -300px;"></div>
+    
+    <div class="orb" style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.15), transparent 60%); filter: blur(20px); top: 20%; left: 10%; animation: float 12s ease-in-out infinite;"></div>
+    <div class="orb" style="position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, rgba(0, 119, 255, 0.12), transparent 70%); filter: blur(30px); top: 60%; right: 10%; animation: float 16s ease-in-out infinite reverse;"></div>
+    
+    <div class="ring" style="position: absolute; width: 500px; height: 500px; border: 1px solid rgba(0, 240, 255, 0.05); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulse 8s infinite;"></div>
+    <div class="ring" style="position: absolute; width: 800px; height: 800px; border: 1px dashed rgba(0, 119, 255, 0.05); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spinSlow 40s linear infinite;"></div>
+  </div>
 
-  <div id="smooth-wrapper">
+  <div id="smooth-wrapper" style="position: relative; z-index: 10;">
     <div id="smooth-content">
 
       <section class="services-hero">
