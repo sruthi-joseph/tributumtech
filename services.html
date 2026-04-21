@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI & Robotics Services | Tributum Tech - Intelligent Solutions</title>
+  <link rel="icon" href="./favicon.jpeg" type="image/jpeg">
+  <link rel="shortcut icon" href="./favicon.jpeg" type="image/jpeg">
   <meta name="description"
     content="Explore Tributum Tech's specialized AI and robotics services: from Data Annotation and Machine Learning to advanced Robotics and Embedded HW integration.">
   <meta name="keywords"
@@ -116,6 +118,15 @@
     
     <div class="ring" style="position: absolute; width: 500px; height: 500px; border: 1px solid rgba(0, 240, 255, 0.05); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulse 8s infinite;"></div>
     <div class="ring" style="position: absolute; width: 800px; height: 800px; border: 1px dashed rgba(0, 119, 255, 0.05); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spinSlow 40s linear infinite;"></div>
+
+    <!-- Animated Perspective Grid -->
+    <div style="position: absolute; inset: -50%; background-image: linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(500px) rotateX(60deg) translateY(-100px); animation: gridMove 20s linear infinite; z-index: 1; pointer-events: none;"></div>
+    <style>
+      @keyframes gridMove {
+        0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+        100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+      }
+    </style>
   </div>
 
   <div id="smooth-wrapper" style="position: relative; z-index: 10;">
