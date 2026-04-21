@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   gsap.ticker.lagSmoothing(0);
+  
+  // Remove loading state explicitly to avoid blank page
+  document.body.classList.remove('loading');
 
   // 2. Global Animations Setup
   initGlobalAnimations();

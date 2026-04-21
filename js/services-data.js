@@ -46,28 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     });
 
-    // Hero entrance animation (only applies if .services-hero exists)
+    // Basic entrance animation for hero content (happens immediately on load)
     if (document.querySelector(".services-hero")) {
         gsap.fromTo(".services-hero .fade-up",
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: "power3.out", delay: 0.5 }
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.2 }
         );
-
-        // Hero content parallax animation (upward movement on scroll) - Desktop Only
-        if (window.innerWidth > 768) {
-            gsap.to(".services-hero > *:not(.holographic-grid)", {
-                y: -150,
-                opacity: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".services-hero",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-        }
     }
-
-    // Simple GSAP entrance animation removed to avoid conflict with reveal-on-scroll
 });

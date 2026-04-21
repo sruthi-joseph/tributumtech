@@ -885,7 +885,7 @@ h6 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  padding: 4rem 0;
+  padding: 1rem 0 4rem; /* Top padding reduced to remove space */
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -1008,6 +1008,36 @@ h6 {
 .service-item[data-service="12"] .service-bg { background-image: url('../assets/vibrant_hero_4k.png'); }
 .service-item[data-service="13"] .service-bg { background-image: url('../assets/service_01.png'); filter: hue-rotate(90deg); }
 
+/* Services Background Canvas */
+#data-stream-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.services-hero {
+  padding: 7rem 0 2rem;
+  position: relative;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Ultimate 'No Box' Forced Reset */
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 @media (max-width: 1024px) {
   .services-list {
     grid-template-columns: repeat(2, 1fr);
@@ -1017,12 +1047,12 @@ h6 {
 @media (max-width: 768px) {
   .services-list {
     grid-template-columns: 1fr;
-    padding: 2rem 0;
+    padding: 1rem 0;
     gap: 1rem;
   }
   .services-hero {
-    padding-top: 110px;
-    padding-bottom: 3rem;
+    padding-top: 100px;
+    padding-bottom: 2rem;
     min-height: auto;
   }
   .service-item {
