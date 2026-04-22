@@ -37,6 +37,22 @@ document.addEventListener("DOMContentLoaded", () => {
     initHomeAnimations();
   }
 
+  // Back to Top Button Logic
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      lenis.scrollTo(0, { duration: 1.2 });
+    });
+  }
+
   // 4. Mobile Menu Toggle logic (Moved into scope of lenis)
   const menuToggle = document.querySelector('.mobile-menu-toggle');
   const header = document.querySelector('.glass-header');
