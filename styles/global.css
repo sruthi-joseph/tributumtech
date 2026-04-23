@@ -829,6 +829,25 @@ h6 {
   }
 }
 
+/* ==========================================================================
+   TABLET RESPONSIVENESS (1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* Dim background images for contrast on tablets exactly like mobile */
+  .hero-bg-img,
+  .hero-globe-rotator {
+    filter: brightness(0.6) !important;
+  }
+
+  .hero-bg-overlay {
+    background: linear-gradient(to bottom, transparent, var(--bg-obsidian) 80%);
+  }
+
+  .hero-hud-container {
+    opacity: 0.3;
+  }
+}
+
 
 
 /* ==========================================================================
