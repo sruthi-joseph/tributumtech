@@ -51,7 +51,9 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   mix-blend-mode: screen;
-  filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 75%);
+  mask-image: radial-gradient(circle at center, black 65%, transparent 75%);
   animation: rotateHologram 30s linear infinite;
   pointer-events: none;
   opacity: 0.9;
