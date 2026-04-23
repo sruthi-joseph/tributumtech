@@ -726,8 +726,10 @@ h6 {
     position: fixed !important;
     top: 0;
     z-index: 2000; /* Extremely high to stay above all holographic effects */
-    background: rgba(2, 6, 18, 0.9); /* More solid for better visibility on mobile */
+    background: rgba(2, 6, 18, 0.98); /* More solid for better visibility on mobile */
     border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .footer-grid {
@@ -755,6 +757,8 @@ h6 {
   .badge {
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
     background: rgba(0, 240, 255, 0.15);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .glow-border {
@@ -778,6 +782,8 @@ h6 {
   .glass-card:hover {
     box-shadow: none !important; /* Stop glows on mobile cards */
     border-color: rgba(0, 240, 255, 0.4) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .section-desc {

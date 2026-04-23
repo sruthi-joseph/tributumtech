@@ -115,12 +115,11 @@ function initGlobalAnimations() {
   const revealElements = document.querySelectorAll('.reveal, .reveal-on-scroll');
   revealElements.forEach(el => {
     gsap.fromTo(el,
-      { y: 50, opacity: 0, scale: 0.98, filter: "blur(5px)" },
+      { y: 50, opacity: 0, scale: 0.98 },
       {
         y: 0,
         opacity: 1,
         scale: 1,
-        filter: "blur(0px)",
         duration: 1,
         ease: "power3.out",
         scrollTrigger: {
@@ -151,7 +150,6 @@ function initHomeAnimations() {
     scale: 2.5,
     y: 50,
     opacity: 0.1,
-    filter: "brightness(1.5)",
     ease: "power2.inOut"
   }, 0)
     // HUD Elements Parallax Zoom (Moving faster for depth)
@@ -183,12 +181,12 @@ function initHomeAnimations() {
     });
 
     tlNetwork.fromTo(".network-reveal-image",
-      { y: 50, opacity: 0, scale: 0.8, filter: "blur(10px)" },
-      { y: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
+      { y: 50, opacity: 0, scale: 0.8 },
+      { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power4.out" }
     )
     .fromTo(".network-reveal-content > *",
-      { y: 30, opacity: 0, filter: "blur(5px)" },
-      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" },
       "-=0.8"
     );
 
@@ -216,12 +214,12 @@ function initHomeAnimations() {
     });
 
     tlNetwork.fromTo(".network-reveal-image",
-      { x: -100, opacity: 0, scale: 0.8, filter: "blur(10px)" },
-      { x: 0, opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "power4.out" }
+      { x: -100, opacity: 0, scale: 0.8 },
+      { x: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power4.out" }
     )
     .fromTo(".network-reveal-content > *",
-      { y: 50, opacity: 0, filter: "blur(5px)" },
-      { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, stagger: 0.15, ease: "power3.out" },
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" },
       "-=0.8"
     );
 
