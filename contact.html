@@ -73,6 +73,10 @@
       display: flex;
       padding-top: 80px;
       /* Header offset */
+      background: linear-gradient(rgba(2, 6, 18, 0.85), rgba(2, 6, 18, 0.6)), url('./assets/contact_bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
     .contact-sidebar {
@@ -81,7 +85,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: var(--bg-obsidian);
+      background: transparent;
       position: relative;
       z-index: 10;
     }
@@ -105,7 +109,9 @@
       /* Increased size to balance */
       padding: 3rem 10% 4rem;
       /* Reduced top padding */
-      background: var(--bg-obsidian);
+      background: rgba(2, 6, 18, 0.6);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;

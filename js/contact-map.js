@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollWheelZoom: false // Prevent scrolling hijacking the page
   }).setView([8.6781387, 76.9095717], 14);
 
-  // Standard Detailed Road Map (OpenStreetMap)
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
+  // Dark Theme Map (CartoDB Dark Matter)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20
   }).addTo(map);
 
   // 4. Interaction: Click to open Google Maps
