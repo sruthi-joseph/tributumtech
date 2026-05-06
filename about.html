@@ -253,7 +253,7 @@
       <section class="about-hero">
         <!-- Background Video -->
         <div class="hero-video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
-          <video autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
+          <video id="aboutHeroVideo" autoplay muted loop playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
             <source src="./about section background.mp4" type="video/mp4">
           </video>
         </div>
@@ -420,6 +420,18 @@
 
   <script src="./js/main.js"></script>
   <script src="./js/about-canvas.js"></script>
+  <script>
+    // Force play hero video if autoplay is delayed
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById('aboutHeroVideo');
+      if (video) {
+        video.play().catch(error => {
+          console.log("Video autoplay was prevented, retrying on first interaction.");
+          document.addEventListener('click', () => video.play(), { once: true });
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

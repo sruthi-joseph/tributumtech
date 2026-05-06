@@ -245,6 +245,201 @@ h6 {
 /* ==========================================================================
    HOLOGRAPHIC OVERLAYS & EFFECTS
    ========================================================================= */
+  background-color: var(--bg-obsidian);
+  /* Hide scrollbar for Lenis smooth scroll */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--bg-obsidian);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--bg-obsidian);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all var(--transit-fast);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700; /* Increased to Bold */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main); /* Brighter than muted */
+  max-width: 600px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Added for readability against busy backgrounds */
+}
+.text-glow {
+  text-shadow: 0 0 20px var(--accent-primary-glow), 0 0 40px var(--accent-primary-glow);
+  color: #fff;
+  filter: brightness(1.2);
+}
+
+.text-accent-pri {
+  color: var(--accent-primary);
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.text-accent-sec {
+  color: var(--accent-secondary);
+  text-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Margin Utilities */
+.mb-1 { margin-bottom: 0.5rem !important; }
+.mb-2 { margin-bottom: 1rem !important; }
+.mb-3 { margin-bottom: 1.5rem !important; }
+.mb-4 { margin-bottom: 2rem !important; }
+.mb-5 { margin-bottom: 3.5rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   COMPONENTS: BADGES, BUTTONS & CARDS
+   ========================================================================== */
+.badge {
+  display: inline-block;
+  padding: 0.6rem 1.5rem; /* Slightly larger */
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--accent-primary); /* More prominent border */
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem; /* Slightly larger */
+  font-weight: 700; /* Bolder */
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  overflow-wrap: break-word; /* Ensure text wraps */
+  word-wrap: break-word;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem; /* Reduced for better mobile fit */
+    margin-bottom: 1.25rem;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed viewport */
+  }
+}
+
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  transition: all var(--transit-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.8;
+}
+
+.glass-card:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--accent-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px var(--accent-primary-glow), inset 0 0 30px rgba(0, 240, 255, 0.1);
+}
+
+/* ==========================================================================
+   HOLOGRAPHIC OVERLAYS & EFFECTS
+   ========================================================================= */
 .holographic-overlay {
   display: none;
   /* Disabled for HD clarity */
@@ -256,30 +451,25 @@ h6 {
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  bottom: -10px;
   background: linear-gradient(to bottom,
       transparent 50%,
       var(--scanline-color) 50%);
   background-size: 100% 4px;
   animation: scanlineScroll 10s linear infinite;
   will-change: transform;
-
-  opacity: 0.15;
-}
-
-@keyframes scanlineScroll {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: 0 100%;
-  }
-}
-
-.crt-flicker {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(18, 16, 16, 0);
