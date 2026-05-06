@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lenis.raf(time * 1000);
   });
 
-  gsap.ticker.lagSmoothing(0);
+  gsap.ticker.lagSmoothing(500, 33); // Balanced lag smoothing
   
   // Remove loading state explicitly to avoid blank page
   document.body.classList.remove('loading');
@@ -139,7 +139,7 @@ function initHomeAnimations() {
       trigger: ".hero",
       start: "top top",
       end: "+=150%", // Immersive scroll duration
-      scrub: 2, // Smooth follow through
+      scrub: window.innerWidth > 768 ? 1.5 : 0.5, // Faster response on mobile
       pin: true,
       pinSpacing: false
     }

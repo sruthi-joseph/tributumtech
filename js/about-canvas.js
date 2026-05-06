@@ -99,14 +99,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.update(scrollProgress);
-        p.draw();
-      });
-      drawLines();
+      if (isIntersecting) {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update(scrollProgress);
+          p.draw();
+        });
+        drawLines();
+      }
       requestAnimationFrame(animate);
     }
+
+    let isIntersecting = false;
+    const observer = new IntersectionObserver((entries) => {
+      isIntersecting = entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    
+    observer.observe(canvas);
     animate();
   });
 

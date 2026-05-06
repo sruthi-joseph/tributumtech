@@ -69,13 +69,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render loop
   function animate() {
-    draw();
+    if (isIntersecting) {
+      draw();
+    }
+    
     // Using setTimeout to throttle framerate slightly to look like retro data stream
     setTimeout(() => {
         requestAnimationFrame(animate);
     }, 50);
   }
 
+  let isIntersecting = false;
+  const observer = new IntersectionObserver((entries) => {
+    isIntersecting = entries[0].isIntersecting;
+  }, { threshold: 0.05 });
+  
+  observer.observe(canvas);
   animate();
 
   // GSAP logic to link scroll to stream properties

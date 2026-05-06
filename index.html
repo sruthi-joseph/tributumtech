@@ -121,8 +121,8 @@
       <section class="hero" id="hero">
         <!-- Canvas/Image Background for Hero Zoom -->
         <div class="hero-bg-container">
-          <img src="assets/hero-main.png" alt="Neural Hologram" class="hero-bg-img" id="hero-core-img" />
-          <img src="assets/globe-rotator.png" alt="Rotating Globe" class="hero-globe-rotator" />
+          <img src="assets/hero-main.png" alt="Neural Hologram" class="hero-bg-img" id="hero-core-img" fetchpriority="high" />
+          <img src="assets/globe-rotator.png" alt="Rotating Globe" class="hero-globe-rotator" fetchpriority="high" />
 
           <!-- HUD Elements for Depth -->
           <div class="hero-hud-container">
@@ -185,7 +185,7 @@
         <div class="split-image network-reveal-image">
           <div class="glass-container glow-border">
             <img src="assets/service_03.png" alt="Advanced Robotics Engineering Interface"
-              style="width: 100%; height: auto; border-radius: 8px;">
+              style="width: 100%; height: auto; border-radius: 8px;" loading="lazy" decoding="async">
             <div class="scanlines"></div>
           </div>
         </div>
@@ -351,7 +351,7 @@
           <div class="footer-brand">
             <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.5rem;">
               <div class="logo-glow-container">
-                <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;">
+                <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;" loading="lazy">
               </div>
             </a>
             <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>

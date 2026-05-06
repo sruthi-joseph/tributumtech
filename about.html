@@ -253,7 +253,7 @@
       <section class="about-hero">
         <!-- Background Video -->
         <div class="hero-video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
-          <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
+          <video autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.4;">
             <source src="./about section background.mp4" type="video/mp4">
           </video>
         </div>
@@ -350,7 +350,7 @@
           <div class="footer-brand">
             <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.5rem;">
               <div class="logo-glow-container">
-                <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;">
+                <img src="./logo.png" alt="Tributum Tech Logo" class="brand-logo" style="height: 48px; width: auto;" loading="lazy">
               </div>
             </a>
             <p class="mt-4">Engineering intelligence. Advancing robotics. Connecting the future.</p>
